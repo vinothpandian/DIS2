@@ -1,20 +1,18 @@
 import java.util.Scanner;
 
-/**
- * Created by VinothPandianSermugaPandian on 27-04-2017.
- */
 public class HelloWorldConsole {
 
     Boolean repeat;
     String input;
 
-    public HelloWorldConsole(){
-        this.repeat = true;
-        this.input = null;
-        helloConsole();
+    public HelloWorldConsole() {
+        languageSelection();
     }
 
-    private void helloConsole() {
+    private void languageSelection() {
+        repeat = true;
+        input = null;
+
         while (repeat) {
             /*Print the console message*/
             System.out.println("\nSelect one of the following:\n" +

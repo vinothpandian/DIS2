@@ -12,7 +12,7 @@ public class HelloWorldGraphical implements ActionListener {
     JButton button_French = new JButton("Francais");
 
     //  Message label
-    JLabel label_Message = new JLabel("Message");
+    JLabel label_Message = new JLabel("Welcome!");
 
     //  Footer with Beenden button
     JButton button_Beenden = new JButton("Beenden");
@@ -22,7 +22,11 @@ public class HelloWorldGraphical implements ActionListener {
     }
 
     private void createMenu() {
-
+        frame.setTitle("Hello GUI");
+        frame.setBounds(100, 100, 450, 300);
+        frame.setMinimumSize(new Dimension(250, 300));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
         //  Body Panel (top center)
         JPanel panel_Body = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 15));
@@ -32,7 +36,6 @@ public class HelloWorldGraphical implements ActionListener {
         JPanel pLanguageSelection = new JPanel(new GridLayout(0, 1, 0, 10));
         panel_Body.add(pLanguageSelection);
 
-        //  Buttons inside Language selection panel
 		button_Deutsch.addActionListener(this);
         pLanguageSelection.add(button_Deutsch);
 
@@ -57,7 +60,7 @@ public class HelloWorldGraphical implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
+        // Actionevent processing
         if(e.getSource() == button_Deutsch)
             label_Message.setText("Guten Tag!");
         else if(e.getSource() == button_English)
@@ -69,15 +72,9 @@ public class HelloWorldGraphical implements ActionListener {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
+        // Create class object
         HelloWorldGraphical hello = new HelloWorldGraphical();
-
-        JFrame frame = new JFrame("Hello GUI");
-        frame.setBounds(100, 100, 450, 300);
-        frame.setMinimumSize(new Dimension(250, 300));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new BorderLayout(0, 0));
-
     }
 
 }
