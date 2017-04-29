@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -6,10 +5,16 @@ import java.util.Scanner;
  */
 public class HelloWorldConsole {
 
-    public static void main(String args[]) {
-        Boolean repeat = true;
-        String input = null;
+    Boolean repeat;
+    String input;
 
+    public HelloWorldConsole(){
+        this.repeat = true;
+        this.input = null;
+        helloConsole();
+    }
+
+    private void helloConsole() {
         while (repeat) {
             /*Print the console message*/
             System.out.println("\nSelect one of the following:\n" +
@@ -20,12 +25,12 @@ public class HelloWorldConsole {
 
             System.out.print(">");
             Scanner s = new Scanner(System.in);
-            input = s.nextLine();
-            if (!input.matches("[A-Za-z]{1}")) {
-                input = "o";
+            this.input = s.nextLine();
+            if (!this.input.matches("[A-Za-z]{1}")) {
+                this.input = "o";
             }
 
-            switch (input) {
+            switch (this.input) {
                 case "d":
                 case "D":
                     System.out.println("Guten Tag!");
@@ -48,5 +53,9 @@ public class HelloWorldConsole {
                     break;
             }
         }
+    }
+
+    public static void main(String args[]) {
+        HelloWorldConsole hello = new HelloWorldConsole();
     }
 }
