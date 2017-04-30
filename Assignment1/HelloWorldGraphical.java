@@ -1,3 +1,13 @@
+/*
+DIS2 - Assignment 01
+A simple Graphical UI program
+
+Group 12:
+    Arijit Gupta
+    Vincentius Renaldi
+    Vinoth Pandian Sermuga Pandian
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -5,8 +15,10 @@ import java.awt.event.*;
 
 public class HelloWorldGraphical implements ActionListener {
 
+    // Main GUI window frame
     JFrame frame = new JFrame();
-    //  Language selection menu
+
+    //  Buttons for language selection menu
     JButton button_Deutsch = new JButton("Deutsch");
     JButton button_English = new JButton("English");
     JButton button_French = new JButton("Francais");
@@ -14,14 +26,18 @@ public class HelloWorldGraphical implements ActionListener {
     //  Message label
     JLabel label_Message = new JLabel("Welcome!");
 
-    //  Footer with Beenden button
+    //  Beenden button for quit
     JButton button_Beenden = new JButton("Beenden");
 
+    //  constructor to call language selection menu
     public HelloWorldGraphical(){
-        createMenu();
+        createGUI();
     }
 
-    private void createMenu() {
+    //  GUI Application - provides a list of language buttons for user to choose
+    private void createGUI() {
+
+        // Attributes of GUI window
         frame.setTitle("Hello GUI");
         frame.setBounds(100, 100, 450, 300);
         frame.setMinimumSize(new Dimension(250, 300));
@@ -36,31 +52,36 @@ public class HelloWorldGraphical implements ActionListener {
         JPanel pLanguageSelection = new JPanel(new GridLayout(0, 1, 0, 10));
         panel_Body.add(pLanguageSelection);
 
+        //  German button
 		button_Deutsch.addActionListener(this);
         pLanguageSelection.add(button_Deutsch);
 
+        //  English button
         button_English.addActionListener(this);
         pLanguageSelection.add(button_English);
 
+        //  French button
         button_French.addActionListener(this);
         pLanguageSelection.add(button_French);
 
+        //  Message display panel with message label
         JPanel panel_Message = new JPanel(new FlowLayout());
         frame.getContentPane().add(panel_Message, BorderLayout.CENTER);
-
         panel_Message.add(label_Message);
 
+        //  Bottom panel with Quit button
         JPanel panel_Bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
         frame.getContentPane().add(panel_Bottom, BorderLayout.SOUTH);
-
         button_Beenden.addActionListener(this);
         panel_Bottom.add(button_Beenden);
 
+        //  set frame as visible
         frame.setVisible(true);
     }
 
+    //  Action listener call to check which button was pressed and set appropritate message value
     public void actionPerformed(ActionEvent e) {
-        // Actionevent processing
+        
         if(e.getSource() == button_Deutsch)
             label_Message.setText("Guten Tag!");
         else if(e.getSource() == button_English)
@@ -71,11 +92,9 @@ public class HelloWorldGraphical implements ActionListener {
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
+    //  Main function to call GUI application class
     public static void main(String[] args) {
-
-        // Create class object
         HelloWorldGraphical hello = new HelloWorldGraphical();
     }
 
 }
-
