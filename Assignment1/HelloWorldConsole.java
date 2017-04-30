@@ -1,11 +1,17 @@
 /*
-DIS2 - Assignment 01
-A simple console (text-based) UI program
-
-Group 12:
-    Arijit Gupta
-    Vincentius Renaldi
-    Vinoth Pandian Sermuga Pandian
+* DIS2 - Assignment 01
+* A simple console (text-based) UI program
+*
+* Group 12:
+*    Arijit Gupta
+*    Vincentius Renaldi
+*    Vinoth Pandian Sermuga Pandian
+*
+* A simple console (text-based) UI program in Java. The program presents the
+* user with a list of languages. The user can select an option by typing in
+* the first letter of that language, followed by “enter”, and the system
+* will output “Hello” in that language.
+*
 */
 
 import java.util.Scanner;
@@ -17,13 +23,17 @@ public class HelloWorldConsole {
     //  Input to the console
     String input;
 
-    //  constructor to call language selection
+    /*
+    *  constructor to call language selection
+    */
     public HelloWorldConsole() {
         languageSelection();
     }
 
 
-    //  Console UI Application - provides a list of languages for user to choose
+    /*
+    *   Console UI Application - provides a list of languages for user to choose
+    */
     private void languageSelection() {
         repeat = true;
         input = null;
@@ -77,7 +87,9 @@ public class HelloWorldConsole {
         }
     }
 
-    //  Main function to call Console UI application class
+    /*
+    *  Main function to call Console UI application class
+    */
     public static void main(String args[]) {
         HelloWorldConsole hello = new HelloWorldConsole();
     }

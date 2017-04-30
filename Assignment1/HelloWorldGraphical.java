@@ -1,11 +1,16 @@
 /*
-DIS2 - Assignment 01
-A simple Graphical UI program
-
-Group 12:
-    Arijit Gupta
-    Vincentius Renaldi
-    Vinoth Pandian Sermuga Pandian
+* DIS2 - Assignment 01
+* A simple Graphical UI program
+*
+* Group 12:
+*    Arijit Gupta
+*    Vincentius Renaldi
+*    Vinoth Pandian Sermuga Pandian
+*
+* A simple Graphical UI program in Java. The GUI window presents the
+* user with a list of buttons with language names. The user can press a button,
+* and the system will display “Hello” in that language in the message box.
+*
 */
 
 import javax.swing.*;
@@ -29,12 +34,16 @@ public class HelloWorldGraphical implements ActionListener {
     //  Beenden button for quit
     JButton button_Beenden = new JButton("Beenden");
 
-    //  constructor to call language selection menu
+    /*
+    *  constructor to call language selection menu
+    */
     public HelloWorldGraphical(){
         createGUI();
     }
 
-    //  GUI Application - provides a list of language buttons for user to choose
+    /*
+    *   GUI Application - provides a list of language buttons for user to choose
+    */
     private void createGUI() {
 
         // Attributes of GUI window
@@ -53,7 +62,7 @@ public class HelloWorldGraphical implements ActionListener {
         panel_Body.add(pLanguageSelection);
 
         //  German button
-		button_Deutsch.addActionListener(this);
+		    button_Deutsch.addActionListener(this);
         pLanguageSelection.add(button_Deutsch);
 
         //  English button
@@ -79,9 +88,11 @@ public class HelloWorldGraphical implements ActionListener {
         frame.setVisible(true);
     }
 
-    //  Action listener call to check which button was pressed and set appropritate message value
+    /*
+    *   Action listener call to check which button was pressed and set appropritate message value
+    */
     public void actionPerformed(ActionEvent e) {
-        
+
         if(e.getSource() == button_Deutsch)
             label_Message.setText("Guten Tag!");
         else if(e.getSource() == button_English)
@@ -92,7 +103,9 @@ public class HelloWorldGraphical implements ActionListener {
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
-    //  Main function to call GUI application class
+    /*
+    *   Main function to call GUI application class
+    */
     public static void main(String[] args) {
         HelloWorldGraphical hello = new HelloWorldGraphical();
     }
