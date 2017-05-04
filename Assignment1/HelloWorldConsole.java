@@ -9,8 +9,8 @@
 *
 * A simple console (text-based) UI program in Java. The program presents the
 * user with a list of languages. The user can select an option by typing in
-* the first letter of that language, followed by “enter”, and the system
-* will output “Hello” in that language.
+* the first letter of that language, followed by 'enter', and the system
+* will output 'Hello' in that language.
 *
 */
 

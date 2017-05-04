@@ -9,7 +9,7 @@
 *
 * A simple Graphical UI program in Java. The GUI window presents the
 * user with a list of buttons with language names. The user can press a button,
-* and the system will display “Hello” in that language in the message box.
+* and the system will display 'Hello' in that language in the message box.
 *
 */
 
