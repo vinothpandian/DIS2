@@ -57,7 +57,6 @@ class MyPanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				width = 0;
 				pressedY = 0;
 				draggedY = 0;
 				oldEndX = lineEndX;
