@@ -10,7 +10,7 @@
  * A custom widget that extends JComponent.
  * A line will be drawn and its length can be modified by dragging the mouse up - to make it longer,
  * or dragging the mouse down - to make it shorter.
- * 
+ *
  * Based on oracle documentation (Performing Custom Painting)
  * http://docs.oracle.com/javase/tutorial/uiswing/painting/index.html
  */
@@ -96,7 +96,7 @@ class MyPanel extends JPanel {
 
 				// calculate ending x coordinate of the line
 				lineEndX = oldEndX + pressedY - draggedY;
-				
+
 				// repaint the panel (drawing area)
 				repaint();
 			}
@@ -111,7 +111,7 @@ class MyPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		// pass graphics context, paint panel's background
 		super.paintComponent(g);
-		
+
 		//validate line width (not going to left direction)
 		if (lineEndX < 50) {
 			lineEndX = 50;

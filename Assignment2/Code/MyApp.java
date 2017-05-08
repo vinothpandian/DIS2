@@ -7,7 +7,7 @@
  *    Vincentius Renaldi
  *    Vinoth Pandian Sermuga Pandian
  *
- * A program that calls WindowsSystem
+ * A program that calls WindowsSystem and draws a line
  */
 
 public class MyApp {
