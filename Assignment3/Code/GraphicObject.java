@@ -21,6 +21,4 @@ public class GraphicObject {
         this.startX = startX;
         this.startY = startY;
     }
-
-
 }

@@ -5,18 +5,43 @@ package Code;
  */
 public class WindowManager {
 
-    public SimpleWindow simpleWindow;
-    public GraphicObject container;
-    public GraphicObject title;
-    public GraphicObject closeButton;
-    public GraphicObject closeMark;
+    public Rectangle titleBar;
+    public Button closeButton;
+    public double titlebarSize;
+    public Label titleText;
 
-    public WindowManager(double startX, double startY, double endX, double endY){
-        this.simpleWindow = simpleWindow;
-        this.container = new GraphicObject(startX-0.001, startY-0.02, endX+0.001, endY+0.001);
-        this.title = new GraphicObject(startX, startY);
-        this.closeButton = new GraphicObject(endX-0.02,startY-0.02,endX,startY);
-        this.closeMark = new GraphicObject(endX-0.01, startY);
+
+
+
+    public WindowManager(SimpleWindow simpleWindow, Dimension winDim){
+
+        titlebarSize = 0.05;
+
+        Dimension appStart = new Dimension(simpleWindow.positionX, simpleWindow.positionY);
+        Dimension appEnd = new Dimension(simpleWindow.width, simpleWindow.height);
+        appEnd.convertAbstract(winDim);
+        appEnd.setAbstractX(appStart.getAbstractX()+appEnd.getAbstractX());
+        appEnd.setAbstractY(appStart.getAbstractY()+appEnd.getAbstractY());
+
+
+        titleBar = createTitlebar(appStart, appEnd);
+        titleText = createTitle(simpleWindow.title,titlebarSize/2);
+        closeButton = createCloseButton("X");
+//        createBorder();
     }
 
+    private Label createTitle(String title, double place) {
+        return new Label(titleBar.startX+place, titleBar.startY+place, title);
+    }
+
+    private Rectangle createTitlebar(Dimension appStart, Dimension appEnd) {
+        return new Rectangle(appStart.getAbstractX(), appStart.getAbstractY()-titlebarSize, appEnd.getAbstractX(),appStart.getAbstractY());
+    }
+
+    private Button createCloseButton(String label) {
+        return new Button(titleBar.endX-0.03, titleBar.endY-0.03, titleBar.endX-0.01,titleBar.endY-0.01, label);
+    }
+
+    private void createBorder() {
+    }
 }
