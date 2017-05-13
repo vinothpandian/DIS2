@@ -25,7 +25,7 @@ public class WindowManager {
 
 
         titleBar = createTitlebar(appStart, appEnd);
-        titleText = createTitle(simpleWindow.title,titlebarSize/2);
+        titleText = createTitle(simpleWindow.title,0.03);
         closeButton = createCloseButton("X");
 //        createBorder();
     }
@@ -39,7 +39,7 @@ public class WindowManager {
     }
 
     private Button createCloseButton(String label) {
-        return new Button(titleBar.endX-0.03, titleBar.endY-0.03, titleBar.endX-0.01,titleBar.endY-0.01, label);
+        return new Button(titleBar.endX-0.03, titleBar.endY-0.04, titleBar.endX-0.01,titleBar.endY-0.01, label);
     }
 
     private void createBorder() {

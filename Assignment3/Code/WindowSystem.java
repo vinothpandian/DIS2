@@ -101,11 +101,12 @@ public class WindowSystem extends GraphicsEventSystem {
 
     private void drawSimpleWindow(SimpleWindow simpleWindow) {
         Dimension appStart = new Dimension(simpleWindow.positionX, simpleWindow.positionY);
+
         appStart.convertPixels(winDim);
         Dimension appEnd = new Dimension(appStart.getPixelX()+simpleWindow.width, appStart.getPixelY()+simpleWindow.height);
 
         setColor(Color.lightGray);
-        fillRect(appStart.getPixelX(), appStart.getPixelY(), appEnd.getPixelX(), appEnd.getPixelY());
+            fillRect(appStart.getPixelX(), appStart.getPixelY(), appEnd.getPixelX(), appEnd.getPixelY());
     }
 //
 //    private void drawWindow(SimpleWindow simpleWindow) {
@@ -127,6 +128,10 @@ public class WindowSystem extends GraphicsEventSystem {
     @Override
     public void handleMouseClicked(int i, int i1) {
         super.handleMouseClicked(i, i1);
+        Dimension position = new Dimension(i,i1);
+        position.convertAbstract(winDim);
+
+        requestRepaint();
     }
 
 }
