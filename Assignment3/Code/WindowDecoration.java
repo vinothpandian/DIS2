@@ -11,6 +11,7 @@ public class WindowDecoration {
     public double titlebarSize;
     public Label titleText;
     public Color titleBarColor;
+    public Rectangle border;
 
     public WindowDecoration(SimpleWindow simpleWindow) {
         titlebarSize = 0.05;
@@ -18,6 +19,7 @@ public class WindowDecoration {
         titleBar = createTitlebar(simpleWindow.start, simpleWindow.end, titleBarColor);
         titleText = createTitle(simpleWindow.title,0.03);
         closeButton = createCloseButton("X");
+        border = createBorder(titleBar, simpleWindow);
     }
     private Label createTitle(String title, double place) {
         return new Label(titleBar.start.getDoubleX()+place, titleBar.start.getDoubleY()+place, title);
@@ -37,7 +39,13 @@ public class WindowDecoration {
         return closeButton;
     }
 
-    private void createBorder() {
+    private Rectangle createBorder(Rectangle titleBar, SimpleWindow simpleWindow) {
+
+        border = new Rectangle(titleBar.start.getDoubleX(), titleBar.start.getDoubleY(),
+                simpleWindow.end.getDoubleX(),simpleWindow.end.getDoubleY());
+        border.color = Color.black;
+        return border;
+
     }
 
 }

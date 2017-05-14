@@ -27,7 +27,6 @@ public class WindowSystem extends GraphicsEventSystem {
 
     // Create Linked list for handling simple windows
     LinkedList<SimpleWindow> simpleWindows = new LinkedList<SimpleWindow>();
-    LinkedList<DecoratedWindow> decoratedWindows = new LinkedList<>();
 
     // Constructor for the Windows System with width and height parameter
     private WindowSystem(int width, int height) {
@@ -48,16 +47,21 @@ public class WindowSystem extends GraphicsEventSystem {
     @Override
     protected void handlePaint() {
         //  loop through all the lines from line linked list and draw the lines on windowsystem
-        for (DecoratedWindow decoratedWindow : decoratedWindows) {
-            decoratedWindow.draw(windowSystem);
-        }
+        windowManager.draw();
     }
 
 
     public void add(SimpleWindow simpleWindow) {
         simpleWindow.calculateDimensions(winDim);
         simpleWindows.add(simpleWindow);
+        windowManager.add(simpleWindow);
+    }
 
-        decoratedWindows.add(new DecoratedWindow(simpleWindow, windowManager.decorate(simpleWindow)));
+    @Override
+    public void handleMouseClicked(int i, int i1) {
+        super.handleMouseClicked(i, i1);
+        Dimension click = new Dimension(i,i1);
+        click.convertToDouble(winDim);
+        windowManager.handleMouseClick(click);
     }
 }
