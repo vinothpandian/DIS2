@@ -76,12 +76,13 @@ public class WindowManager {
 
         while (it.hasNext()){
             decoratedWindow = it.next();
+
+            if(contains(click,decoratedWindow.windowDecoration.closeButton)){
+                removeDecoratedWindow(decoratedWindow);
+                break;
+            }
+
             if(contains(click, decoratedWindow.windowDecoration.border)){
-                if(contains(click,decoratedWindow.windowDecoration.closeButton)){
-                    System.out.println("CLOSE "+ decoratedWindow.simpleWindow.title);
-                    removeDecoratedWindow(decoratedWindow);
-                    break;
-                }
                 bringToFront(decoratedWindow);
                 break;
             }
@@ -96,12 +97,12 @@ public class WindowManager {
 
     private void removeDecoratedWindow(DecoratedWindow decoratedWindow){
         decoratedWindows.remove(decoratedWindow);
+        System.out.print("CLOSE CLICKED");
         windowSystem.requestRepaint();
     }
 
 
     public void handleMouseDrag(Dimension click) {
-
 
     }
 }
