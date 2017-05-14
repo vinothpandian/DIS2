@@ -1,6 +1,6 @@
 package Code;
 
-import static javafx.scene.input.KeyCode.Y;
+import java.awt.*;
 
 /*
  * DIS2 - Assignment 02
@@ -16,31 +16,24 @@ import static javafx.scene.input.KeyCode.Y;
  */
 public class SimpleWindow{
 
-    public double positionX;
-    public double positionY;
-    public int width;
-    public int height;
-    public String title;
+	public Dimension start;
+	public Dimension end;
+	public Dimension size;
+	public String title;
+	public Color color;
 
-    public SimpleWindow(double positionX, double positionY, int width, int height, String title) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.width= width;
-        this.height = height;
-        this.title = title;
-    }
+	public SimpleWindow(double sX, double sY, int width, int height, String title){
+		this.start = new Dimension(sX,sY);
+		this.size = new Dimension(width,height);
+		this.end = new Dimension(0,0);
+		this.title = title;
+		this.color = Color.gray;
+	}
 
-    public SimpleWindow(int width, int height, String title) {
-        this(0, 0, width, height, title);
-    }
-
-    public SimpleWindow(String title) {
-        this(0,0,200,200,title);
-    }
-
-    public void move(double posX, double posY){
-        this.positionX = (double) posX;
-        this.positionY = (double) posY;
-    }
-
+	public void calculateDimensions(Dimension winDim){
+		this.start.convertToInt(winDim);
+		this.end.setIntX(this.start.getIntX()+this.size.getIntX());
+		this.end.setIntY(this.start.getIntY()+this.size.getIntY());
+		this.end.convertToDouble(winDim);
+	}
 }

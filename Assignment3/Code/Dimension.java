@@ -11,73 +11,69 @@ public class Dimension {
     private double doubleX;
     private double doubleY;
 
-    private int pixelX(double coordX, int width) {
-        return (int) (coordX * width);
+    private int pixelX(double x, int width) {
+        return (int) (x * width);
     }
-    private double abstractX(double coordX, int width) {
-        return coordX / width;
-    }
-
-    private int pixelY(double coordY, int height) {
-        return (int) (coordY * height);
-    }
-    private double abstractY(double coordY, int height) {
-        return coordY / height;
+    private double abstractX(double x, int width) {
+        return x / width;
     }
 
-    public Dimension(int width, int height){
-        this.intX = width;
-        this.intY = height;
+    private int pixelY(double y, int height) {
+        return (int) (y * height);
+    }
+    private double abstractY(double y, int height) {
+        return y / height;
     }
 
-    public Dimension(double width, double height){
-        this.doubleX = width;
-        this.doubleY = height;
+    public Dimension(int x, int y){
+        this.intX = x;
+        this.intY = y;
     }
 
-    public void convertAbstract(Dimension winDim){
+    public Dimension(double x, double y){
+        this.doubleX = x;
+        this.doubleY = y;
+    }
+
+    public void convertToDouble(Dimension winDim){
         this.doubleX = abstractX(this.intX,winDim.intX);
         this.doubleY = abstractY(this.intY,winDim.intY);
     }
 
-    public void convertPixels(Dimension winDim){
+    public void convertToInt(Dimension winDim){
         this.intX = pixelX(this.doubleX,winDim.intX);
         this.intY = pixelY(this.doubleY,winDim.intY);
     }
 
-
-    public int getPixelX() {
+    public int getIntX() {
         return intX;
     }
 
-    public int getPixelY() {
-        return intY;
-    }
-    
-    public double getAbstractX() {
-        return doubleX;
-    }
-
-    public double getAbstractY() {
-        return doubleY;
-    }
-
-    public void setPixelX(int intX) {
+    public void setIntX(int intX) {
         this.intX = intX;
     }
 
-    public void setPixelY(int intY) {
+    public int getIntY() {
+        return intY;
+    }
+
+    public void setIntY(int intY) {
         this.intY = intY;
     }
 
-    public void setAbstractX(double doubleX) {
+    public double getDoubleX() {
+        return doubleX;
+    }
+
+    public void setDoubleX(double doubleX) {
         this.doubleX = doubleX;
     }
 
-    public void setAbstractY(double doubleY) {
+    public double getDoubleY() {
+        return doubleY;
+    }
+
+    public void setDoubleY(double doubleY) {
         this.doubleY = doubleY;
     }
-    
-    
-
 }

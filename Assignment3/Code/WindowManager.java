@@ -1,47 +1,26 @@
 package Code;
 
+import java.util.LinkedList;
+
 /**
  * Created by VinothPandianSermuga on 10-05-2017.
  */
 public class WindowManager {
 
-    public Rectangle titleBar;
-    public Button closeButton;
-    public double titlebarSize;
-    public Label titleText;
 
+    private static WindowManager windowManager;
+    private LinkedList<WindowDecoration> windowDecorationList = new LinkedList<>();
+    private static WindowSystem windowSystem = WindowSystem.getInstance();
 
-
-
-    public WindowManager(SimpleWindow simpleWindow, Dimension winDim){
-
-        titlebarSize = 0.05;
-
-        Dimension appStart = new Dimension(simpleWindow.positionX, simpleWindow.positionY);
-        Dimension appEnd = new Dimension(simpleWindow.width, simpleWindow.height);
-        appEnd.convertAbstract(winDim);
-        appEnd.setAbstractX(appStart.getAbstractX()+appEnd.getAbstractX());
-        appEnd.setAbstractY(appStart.getAbstractY()+appEnd.getAbstractY());
-
-
-        titleBar = createTitlebar(appStart, appEnd);
-        titleText = createTitle(simpleWindow.title,0.03);
-        closeButton = createCloseButton("X");
-//        createBorder();
+    public static WindowManager getInstance(){
+        if(windowManager == null){
+            windowManager = new WindowManager();
+        }
+        return windowManager;
     }
 
-    private Label createTitle(String title, double place) {
-        return new Label(titleBar.startX+place, titleBar.startY+place, title);
-    }
 
-    private Rectangle createTitlebar(Dimension appStart, Dimension appEnd) {
-        return new Rectangle(appStart.getAbstractX(), appStart.getAbstractY()-titlebarSize, appEnd.getAbstractX(),appStart.getAbstractY());
-    }
-
-    private Button createCloseButton(String label) {
-        return new Button(titleBar.endX-0.03, titleBar.endY-0.04, titleBar.endX-0.01,titleBar.endY-0.01, label);
-    }
-
-    private void createBorder() {
+    public WindowDecoration decorate(SimpleWindow simpleWindow) {
+        return new WindowDecoration(simpleWindow);
     }
 }
