@@ -76,15 +76,17 @@ public class WindowManager {
 
         while (it.hasNext()){
             decoratedWindow = it.next();
-            if(contains(click, decoratedWindow.windowDecoration.border)){
+            if(contains(click, decoratedWindow.windowDecoration.closeButton)){
                 System.out.println("CLOSE "+ decoratedWindow.simpleWindow.title);
+                removeDecoratedWindow(decoratedWindow);
                 break;
             }
         }
     }
 
     private void removeDecoratedWindow(DecoratedWindow decoratedWindow){
-
+        decoratedWindows.remove(decoratedWindow);
+        windowSystem.requestRepaint();
     }
 
 
