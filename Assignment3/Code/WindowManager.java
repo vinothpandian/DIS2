@@ -1,6 +1,8 @@
 package Code;
 
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Created by VinothPandianSermuga on 10-05-2017.
@@ -67,11 +69,23 @@ public class WindowManager {
     }
 
     public void handleMouseClick(Dimension click) {
-        for (DecoratedWindow decoratedWindow : decoratedWindows) {
 
-            if(contains(click, decoratedWindow.windowDecoration.closeButton)){
-                System.out.println("CLOSE "+decoratedWindow.simpleWindow.title);            }
+        DecoratedWindow decoratedWindow;
 
+        Iterator<DecoratedWindow> it = decoratedWindows.descendingIterator();
+
+        while (it.hasNext()){
+            decoratedWindow = it.next();
+            if(contains(click, decoratedWindow.windowDecoration.border)){
+                System.out.println("CLOSE "+ decoratedWindow.simpleWindow.title);
+                break;
+            }
         }
     }
+
+    private void removeDecoratedWindow(DecoratedWindow decoratedWindow){
+
+    }
+
+
 }

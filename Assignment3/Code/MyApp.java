@@ -18,15 +18,15 @@ public class MyApp {
 
 		WindowSystem windowSystem = WindowSystem.getInstance();
 
-		SimpleWindow simpleWindowA = new SimpleWindow(0.5,0.5,200,200,"Window A");
-		simpleWindowA.color = Color.lightGray;
+		SimpleWindow simpleWindowA = new SimpleWindow(0.1,0.1,200,200,"Window A");
+		simpleWindowA.color = Color.red;
 		windowSystem.add(simpleWindowA);
 
 		SimpleWindow simpleWindowB = new SimpleWindow(0.2,0.2,300,200,"Window B");
 		simpleWindowB.color = Color.lightGray;
 		windowSystem.add(simpleWindowB);
 
-		SimpleWindow simpleWindowC = new SimpleWindow(0.7,0.7,200,300,"Window C");
+		SimpleWindow simpleWindowC = new SimpleWindow(0.3,0.3,200,300,"Window C");
 		simpleWindowC.color = Color.lightGray;
 		windowSystem.add(simpleWindowC);
 	}
