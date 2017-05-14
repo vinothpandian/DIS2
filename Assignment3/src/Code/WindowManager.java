@@ -8,8 +8,6 @@ import java.util.ListIterator;
  * Created by VinothPandianSermuga on 10-05-2017.
  */
 public class WindowManager {
-
-
     private static WindowManager windowManager;
     private LinkedList<DecoratedWindow> decoratedWindows = new LinkedList<>();
     private static WindowSystem windowSystem = WindowSystem.getInstance();
@@ -20,8 +18,6 @@ public class WindowManager {
         }
         return windowManager;
     }
-
-
 
     public void add(SimpleWindow simpleWindow) {
         decoratedWindows.add(new DecoratedWindow(simpleWindow, new WindowDecoration(simpleWindow)));
@@ -101,8 +97,55 @@ public class WindowManager {
         windowSystem.requestRepaint();
     }
 
+    /*
+    public void handleMousePress(Dimension click) {
 
+        System.out.println("mouse pressed");
+    }*/
+
+    /*
+    public void handleMouseRelease(Dimension click) {
+
+        System.out.println("mouse released");
+    }*/
+
+
+    /*Handler for mouse drag event*/
     public void handleMouseDrag(Dimension click) {
 
+        DecoratedWindow decoratedWindow;
+
+        Iterator<DecoratedWindow> it = decoratedWindows.descendingIterator();
+
+        while (it.hasNext()){
+            decoratedWindow = it.next();
+
+            if(contains(click,decoratedWindow.windowDecoration.titleBar)){
+                dragDecoratedWindow(click,decoratedWindow);
+                break;
+            }
+        }
+
+    }
+
+    private void dragDecoratedWindow(Dimension click, DecoratedWindow decoratedWindow){
+        //System.out.println("Dragged: Window" + decoratedWindow.windowDecoration.titleText.text);
+
+        SimpleWindow simpleWindow = decoratedWindow.simpleWindow;
+        //WindowDecoration windowDecoration = decoratedWindow.windowDecoration;
+
+        //moves the SimpleWindow
+        simpleWindow.start.setDoubleX(click.getDoubleX());
+        simpleWindow.start.setDoubleY(click.getDoubleY());
+        simpleWindow.calculateDimensions(windowSystem.winDim);
+
+        //moves the windowDecoration (title, border) relatie to the simpleWindow
+        decoratedWindow.windowDecoration = new WindowDecoration(simpleWindow);
+
+//      windowDecoration.titleBar = windowDecoration.createTitlebar(simpleWindow.start, simpleWindow.end, java.awt.Color.BLUE);
+//      windowDecoration.border = windowDecoration.createBorder(windowDecoration.titleBar, simpleWindow);
+
+        //repaint all windows
+        windowSystem.requestRepaint();
     }
 }
