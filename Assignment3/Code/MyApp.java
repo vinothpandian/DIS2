@@ -23,11 +23,11 @@ public class MyApp {
 		windowSystem.add(simpleWindowA);
 
 		SimpleWindow simpleWindowB = new SimpleWindow(0.2,0.2,300,200,"Window B");
-		simpleWindowB.color = Color.lightGray;
+		simpleWindowB.color = Color.green;
 		windowSystem.add(simpleWindowB);
 
 		SimpleWindow simpleWindowC = new SimpleWindow(0.3,0.3,200,300,"Window C");
-		simpleWindowC.color = Color.lightGray;
+		simpleWindowC.color = Color.blue;
 		windowSystem.add(simpleWindowC);
 	}
 }

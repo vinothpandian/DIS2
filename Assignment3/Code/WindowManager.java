@@ -76,12 +76,22 @@ public class WindowManager {
 
         while (it.hasNext()){
             decoratedWindow = it.next();
-            if(contains(click, decoratedWindow.windowDecoration.closeButton)){
-                System.out.println("CLOSE "+ decoratedWindow.simpleWindow.title);
-                removeDecoratedWindow(decoratedWindow);
+            if(contains(click, decoratedWindow.windowDecoration.border)){
+                if(contains(click,decoratedWindow.windowDecoration.closeButton)){
+                    System.out.println("CLOSE "+ decoratedWindow.simpleWindow.title);
+                    removeDecoratedWindow(decoratedWindow);
+                    break;
+                }
+                bringToFront(decoratedWindow);
                 break;
             }
         }
+    }
+
+    private void bringToFront(DecoratedWindow decoratedWindow) {
+        decoratedWindows.remove(decoratedWindow);
+        decoratedWindows.addLast(decoratedWindow);
+        windowSystem.requestRepaint();
     }
 
     private void removeDecoratedWindow(DecoratedWindow decoratedWindow){
@@ -90,4 +100,8 @@ public class WindowManager {
     }
 
 
+    public void handleMouseDrag(Dimension click) {
+
+
+    }
 }

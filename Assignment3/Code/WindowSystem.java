@@ -64,4 +64,13 @@ public class WindowSystem extends GraphicsEventSystem {
         click.convertToDouble(winDim);
         windowManager.handleMouseClick(click);
     }
+
+
+    @Override
+    public void handleMouseDragged(int i, int i1) {
+        super.handleMouseDragged(i, i1);
+        Dimension click = new Dimension(i,i1);
+        click.convertToDouble(winDim);
+        windowManager.handleMouseDrag(click);
+    }
 }
