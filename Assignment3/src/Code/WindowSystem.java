@@ -48,6 +48,7 @@ public class WindowSystem extends GraphicsEventSystem {
     @Override
     protected void handlePaint() {
         //  loop through all the lines from line linked list and draw the lines on windowsystem
+
         for (DecoratedWindow decoratedWindow : decoratedWindows) {
 
             SimpleWindow simpleWindow = decoratedWindow.simpleWindow;
@@ -95,7 +96,7 @@ public class WindowSystem extends GraphicsEventSystem {
         super.handleMouseClicked(i, i1);
         Dimension click = new Dimension(i, i1);
         click.convertToDouble(winDim);
-        DecoratedWindow decoratedWindow = null;
+        DecoratedWindow decoratedWindow;
 
         Iterator<DecoratedWindow> it = decoratedWindows.descendingIterator();
 
@@ -148,8 +149,10 @@ public class WindowSystem extends GraphicsEventSystem {
             if (decoratedWindow.windowDecoration.border.contains(click)) {
                 windowManager.bringToFront(decoratedWindow);
                 if (decoratedWindow.windowDecoration.closeButton.contains(click)) {
-
                     break;
+                }
+                if (decoratedWindow.windowDecoration.border.onEdge(click)){
+                    // RESIZE WINDOW NOT IMPLEMENTED YET
                 }
                 if (decoratedWindow.windowDecoration.titleBar.contains(click)) {
                     windowManager.handleTitleBarClick(decoratedWindow, click);

@@ -30,26 +30,32 @@ public class WindowManager {
         }
         return false;
     }
-    
+
 
     public void handleMouseDrag(Dimension drag) {
         if (isBounded(drag)){
-            if (activeWindow != null && activeWindowPosition!= null && initialMousePosition != null){
-                activeWindow.simpleWindow.start.setIntX(activeWindowPosition.getIntX()+drag.getIntX()-initialMousePosition
-                        .getIntX());
-                activeWindow.simpleWindow.start.setIntY(activeWindowPosition.getIntY()+drag.getIntY()-initialMousePosition
-                        .getIntY());
-                activeWindow.simpleWindow.start.convertToDouble(windowSystem.winDim);
-                activeWindow.simpleWindow.start.setDoubleY(activeWindow.simpleWindow.start.getDoubleY()
-                        +activeWindow.windowDecoration.titlebarSize);
-                activeWindow.simpleWindow.calculateDimensions(windowSystem.winDim);
-                activeWindow.simpleWindow.start.convertToInt(windowSystem.winDim);
-                activeWindow.simpleWindow.end.convertToDouble(windowSystem.winDim);
-                activeWindow.simpleWindow.end.convertToInt(windowSystem.winDim);
-                activeWindow.windowDecoration = new WindowDecoration(activeWindow.simpleWindow);
+            moveWindow(drag);
+        }
+    }
 
-                windowSystem.requestRepaint();
-            }
+    private void moveWindow(Dimension drag) {
+        if (activeWindow != null && activeWindowPosition!= null && initialMousePosition != null){
+            activeWindow.simpleWindow.start.setIntX(activeWindowPosition.getIntX()+drag.getIntX()-initialMousePosition
+                    .getIntX());
+            activeWindow.simpleWindow.start.setIntY(activeWindowPosition.getIntY()+drag.getIntY()-initialMousePosition
+                    .getIntY());
+            activeWindow.simpleWindow.start.convertToDouble(windowSystem.winDim);
+            activeWindow.simpleWindow.start.setDoubleY(activeWindow.simpleWindow.start.getDoubleY()
+                    +activeWindow.windowDecoration.titlebarSize);
+            activeWindow.simpleWindow.calculateDimensions(windowSystem.winDim);
+            activeWindow.simpleWindow.start.convertToInt(windowSystem.winDim);
+            activeWindow.simpleWindow.end.convertToDouble(windowSystem.winDim);
+            activeWindow.simpleWindow.end.convertToInt(windowSystem.winDim);
+            activeWindow.windowDecoration = new WindowDecoration(activeWindow.simpleWindow);
+            activeWindow.windowDecoration.titleBar.color = Color.gray;
+            activeWindow.windowDecoration.border.color = Color.gray;
+
+            windowSystem.requestRepaint();
         }
     }
 
@@ -67,6 +73,8 @@ public class WindowManager {
 
     private void initializeActiveWindow(DecoratedWindow decoratedWindow, Dimension click) {
         activeWindow = decoratedWindow;
+        activeWindow.windowDecoration.titleBar.color = Color.gray;
+        activeWindow.windowDecoration.border.color = Color.gray;
         activeWindowPosition = activeWindow.windowDecoration.border.start;
         initialMousePosition = click;
         windowSystem.requestRepaint();
@@ -83,6 +91,9 @@ public class WindowManager {
     }
 
     public void handleMouseRelease(Dimension click) {
+        if (activeWindow != null){
+            activeWindow.windowDecoration.titleBar.color = Color.darkGray;
+        }
         activeWindow = null;
         activeWindowPosition = null;
         initialMousePosition = null;

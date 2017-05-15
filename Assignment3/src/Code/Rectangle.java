@@ -24,4 +24,17 @@ public class Rectangle extends Object {
         return false;
     }
 
+    public Boolean onEdge(Dimension point){
+        double distance = 0.05;   // constant distance
+        if ( ( point.getDoubleX() < this.start.getDoubleX() && point.getDoubleX() > this.start.getDoubleX() -
+                distance ) ||
+                ( point.getDoubleX() > this.end.getDoubleX() && point.getDoubleX() < this.end.getDoubleX() + distance ) ||
+                ( point.getDoubleY() < this.end.getDoubleY() && point.getDoubleY() > this.end.getDoubleY() - distance ) ||
+                ( point.getDoubleY() > this.start.getDoubleY() && point.getDoubleY() < this.start.getDoubleY() + distance ) )  {
+
+            return true;
+        }
+
+        return false;
+    }
 }
