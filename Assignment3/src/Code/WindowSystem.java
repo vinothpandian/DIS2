@@ -11,6 +11,7 @@ package Code;/*
  * performs a draw line method.
  *
  */
+
 import de.rwth.hci.Graphics.GraphicsEventSystem;
 
 import java.awt.Color;
@@ -27,28 +28,27 @@ public class WindowSystem extends GraphicsEventSystem {
     public Dimension winDim;
 
     // Create Linked list for handling simple windows
-    private LinkedList<DecoratedWindow> decoratedWindows = new LinkedList<>();
+    protected LinkedList<DecoratedWindow> decoratedWindows = new LinkedList<>();
 
     // Constructor for the Windows System with width and height parameter
     private WindowSystem(int width, int height) {
         super(width, height);
-        winDim = new Dimension(width,height);
+        winDim = new Dimension(width, height);
     }
 
-    public static WindowSystem getInstance(){
-        if(windowSystem == null){
-            windowSystem = new WindowSystem(1024,768);
+    public static WindowSystem getInstance() {
+        if (windowSystem == null) {
+            windowSystem = new WindowSystem(1024, 768);
         }
         return windowSystem;
     }
-
 
 
     //  Handle paint method which handles the draw operations of window system
     @Override
     protected void handlePaint() {
         //  loop through all the lines from line linked list and draw the lines on windowsystem
-        for (DecoratedWindow decoratedWindow: decoratedWindows) {
+        for (DecoratedWindow decoratedWindow : decoratedWindows) {
 
             SimpleWindow simpleWindow = decoratedWindow.simpleWindow;
             WindowDecoration windowDecoration = decoratedWindow.windowDecoration;
@@ -85,43 +85,44 @@ public class WindowSystem extends GraphicsEventSystem {
         decoratedWindows.add(new DecoratedWindow(simpleWindow, windowManager.createDecoratedWindow(simpleWindow)));
     }
 
+    public void remove(DecoratedWindow decoratedWindow) {
+        decoratedWindows.remove(decoratedWindow);
+        windowSystem.requestRepaint();
+    }
+
     @Override
     public void handleMouseClicked(int i, int i1) {
         super.handleMouseClicked(i, i1);
-        Dimension click = new Dimension(i,i1);
+        Dimension click = new Dimension(i, i1);
         click.convertToDouble(winDim);
-        DecoratedWindow decoratedWindow;
+        DecoratedWindow decoratedWindow = null;
 
         Iterator<DecoratedWindow> it = decoratedWindows.descendingIterator();
 
-        while (it.hasNext()){
+        while (it.hasNext()) {
             decoratedWindow = it.next();
 
-            if(decoratedWindow.windowDecoration.closeButton.contains(click)){
-                decoratedWindows.remove(decoratedWindow);
-                System.out.print("CLOSE CLICKED");
-                windowSystem.requestRepaint();
+            if (decoratedWindow.windowDecoration.closeButton.contains(click)) {
+                windowManager.handleCloseButtonClick(decoratedWindow, click);
                 break;
             }
         }
-
-        windowManager.handleMouseClick(click);
     }
 
 
     @Override
     public void handleMouseReleased(int i, int i1) {
         super.handleMousePressed(i, i1);
-        Dimension click = new Dimension(i,i1);
+        Dimension click = new Dimension(i, i1);
         click.convertToDouble(winDim);
-//        windowManager.handleMouseRelease(click);
+        windowManager.handleMouseRelease(click);
     }
 
 
     @Override
     public void handleMouseDragged(int i, int i1) {
         super.handleMouseDragged(i, i1);
-        Dimension click = new Dimension(i,i1);
+        Dimension click = new Dimension(i, i1);
         click.convertToDouble(winDim);
         windowManager.handleMouseDrag(click);
     }
@@ -134,34 +135,32 @@ public class WindowSystem extends GraphicsEventSystem {
     @Override
     public void handleMousePressed(int i, int i1) {
         super.handleMousePressed(i, i1);
-        Dimension click = new Dimension(i,i1);
+        Dimension click = new Dimension(i, i1);
         click.convertToDouble(winDim);
-//        windowManager.handleMousePressed(click);
 
         DecoratedWindow decoratedWindow;
 
         Iterator<DecoratedWindow> it = decoratedWindows.descendingIterator();
 
-        while (it.hasNext()){
+        while (it.hasNext()) {
             decoratedWindow = it.next();
 
-            if(decoratedWindow.windowDecoration.border.contains(click)){
-                bringToFront(decoratedWindow);
-                if (decoratedWindow.windowDecoration.titleBar.contains(click)){
-                    if (decoratedWindow.windowDecoration.closeButton.contains(click)){
-                        this.handleMouseClicked(click.getIntX(), click.getIntY());
-                        break;
-                    }
+            if (decoratedWindow.windowDecoration.border.contains(click)) {
+                windowManager.bringToFront(decoratedWindow);
+                if (decoratedWindow.windowDecoration.closeButton.contains(click)) {
+
+                    break;
+                }
+                if (decoratedWindow.windowDecoration.titleBar.contains(click)) {
                     windowManager.handleTitleBarClick(decoratedWindow, click);
+                    break;
                 }
                 break;
             }
         }
+
+
     }
 
-    private void bringToFront(DecoratedWindow decoratedWindow) {
-        decoratedWindows.remove(decoratedWindow);
-        decoratedWindows.addLast(decoratedWindow);
-        windowSystem.requestRepaint();
-    }
+
 }
