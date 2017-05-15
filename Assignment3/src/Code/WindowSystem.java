@@ -61,6 +61,7 @@ public class WindowSystem extends GraphicsEventSystem {
     public void handleMouseClicked(int i, int i1) {
         super.handleMouseClicked(i, i1);
         Dimension click = new Dimension(i,i1);
+        System.out.print("CLICKED");
         click.convertToDouble(winDim);
         windowManager.handleMouseClick(click);
     }
@@ -74,7 +75,7 @@ public class WindowSystem extends GraphicsEventSystem {
         windowManager.handleMousePress(click);
     }*/
 
-    /*
+
     @Override
     public void handleMouseReleased(int i, int i1) {
         super.handleMousePressed(i, i1);
@@ -82,12 +83,26 @@ public class WindowSystem extends GraphicsEventSystem {
         click.convertToDouble(winDim);
         windowManager.handleMouseRelease(click);
     }
-    */
+
+
     @Override
     public void handleMouseDragged(int i, int i1) {
         super.handleMouseDragged(i, i1);
         Dimension click = new Dimension(i,i1);
         click.convertToDouble(winDim);
         windowManager.handleMouseDrag(click);
+    }
+
+    @Override
+    public void handleMouseMoved(int i, int i1) {
+        super.handleMouseMoved(i, i1);
+    }
+
+    @Override
+    public void handleMousePressed(int i, int i1) {
+        super.handleMousePressed(i, i1);
+        Dimension click = new Dimension(i,i1);
+        click.convertToDouble(winDim);
+        windowManager.handleMousePressed(click);
     }
 }

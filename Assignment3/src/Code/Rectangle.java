@@ -14,4 +14,5 @@ public class Rectangle extends Object {
         this.color = color;
 
     }
+
 }

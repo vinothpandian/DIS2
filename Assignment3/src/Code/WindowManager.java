@@ -11,6 +11,9 @@ public class WindowManager {
     private static WindowManager windowManager;
     private LinkedList<DecoratedWindow> decoratedWindows = new LinkedList<>();
     private static WindowSystem windowSystem = WindowSystem.getInstance();
+    DecoratedWindow activeWindow;
+    Dimension activeWindowPosition;
+    Dimension initialMousePosition;
 
     public static WindowManager getInstance(){
         if(windowManager == null){
@@ -77,11 +80,6 @@ public class WindowManager {
                 removeDecoratedWindow(decoratedWindow);
                 break;
             }
-
-            if(contains(click, decoratedWindow.windowDecoration.border)){
-                bringToFront(decoratedWindow);
-                break;
-            }
         }
     }
 
@@ -97,21 +95,32 @@ public class WindowManager {
         windowSystem.requestRepaint();
     }
 
-    /*
-    public void handleMousePress(Dimension click) {
-
-        System.out.println("mouse pressed");
-    }*/
-
-    /*
-    public void handleMouseRelease(Dimension click) {
-
-        System.out.println("mouse released");
-    }*/
-
 
     /*Handler for mouse drag event*/
-    public void handleMouseDrag(Dimension click) {
+    public void handleMouseDrag(Dimension drag) {
+        if (activeWindow != null && activeWindowPosition!= null && initialMousePosition != null){
+            activeWindow.simpleWindow.start.setIntX(activeWindowPosition.getIntX()+drag.getIntX()-initialMousePosition
+                    .getIntX());
+            activeWindow.simpleWindow.start.setIntY(activeWindowPosition.getIntY()+drag.getIntY()-initialMousePosition
+                    .getIntY());
+            activeWindow.simpleWindow.start.convertToDouble(windowSystem.winDim);
+            activeWindow.simpleWindow.start.setDoubleY(activeWindow.simpleWindow.start.getDoubleY()
+                    +activeWindow.windowDecoration.titlebarSize);
+            activeWindow.simpleWindow.calculateDimensions(windowSystem.winDim);
+            activeWindow.simpleWindow.start.convertToInt(windowSystem.winDim);
+            activeWindow.simpleWindow.end.convertToDouble(windowSystem.winDim);
+            activeWindow.simpleWindow.end.convertToInt(windowSystem.winDim);
+            activeWindow.windowDecoration = new WindowDecoration(activeWindow.simpleWindow);
+
+            windowSystem.requestRepaint();
+        }
+    }
+
+    public void handleMouseRelease(Dimension drag) {
+
+    }
+
+    public void handleMousePressed(Dimension click) {
 
         DecoratedWindow decoratedWindow;
 
@@ -120,32 +129,16 @@ public class WindowManager {
         while (it.hasNext()){
             decoratedWindow = it.next();
 
-            if(contains(click,decoratedWindow.windowDecoration.titleBar)){
-                dragDecoratedWindow(click,decoratedWindow);
+            if(contains(click, decoratedWindow.windowDecoration.border)){
+                bringToFront(decoratedWindow);
+                activeWindow = decoratedWindow;
+                activeWindowPosition = activeWindow.windowDecoration.border.start;
+                System.out.print(activeWindowPosition.getDoubleX());
+                initialMousePosition = click;
                 break;
             }
         }
 
-    }
 
-    private void dragDecoratedWindow(Dimension click, DecoratedWindow decoratedWindow){
-        //System.out.println("Dragged: Window" + decoratedWindow.windowDecoration.titleText.text);
-
-        SimpleWindow simpleWindow = decoratedWindow.simpleWindow;
-        //WindowDecoration windowDecoration = decoratedWindow.windowDecoration;
-
-        //moves the SimpleWindow
-        simpleWindow.start.setDoubleX(click.getDoubleX());
-        simpleWindow.start.setDoubleY(click.getDoubleY());
-        simpleWindow.calculateDimensions(windowSystem.winDim);
-
-        //moves the windowDecoration (title, border) relatie to the simpleWindow
-        decoratedWindow.windowDecoration = new WindowDecoration(simpleWindow);
-
-//      windowDecoration.titleBar = windowDecoration.createTitlebar(simpleWindow.start, simpleWindow.end, java.awt.Color.BLUE);
-//      windowDecoration.border = windowDecoration.createBorder(windowDecoration.titleBar, simpleWindow);
-
-        //repaint all windows
-        windowSystem.requestRepaint();
     }
 }
