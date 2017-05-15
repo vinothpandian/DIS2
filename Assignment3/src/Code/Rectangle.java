@@ -15,4 +15,13 @@ public class Rectangle extends Object {
 
     }
 
+    public Boolean contains(Dimension mouse){
+        if((mouse.getDoubleX() >= this.start.getDoubleX() && mouse.getDoubleX() <= this.end.getDoubleX())
+                && (mouse.getDoubleY() >= this.start.getDoubleY() && mouse.getDoubleY() <= this.end
+                .getDoubleY())){
+            return true;
+        }
+        return false;
+    }
+
 }

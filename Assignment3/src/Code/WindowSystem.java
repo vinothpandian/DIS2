@@ -14,6 +14,7 @@ package Code;/*
 import de.rwth.hci.Graphics.GraphicsEventSystem;
 
 import java.awt.Color;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /* Create a Window System class extending the GES jar file */
@@ -26,7 +27,7 @@ public class WindowSystem extends GraphicsEventSystem {
     public Dimension winDim;
 
     // Create Linked list for handling simple windows
-    LinkedList<SimpleWindow> simpleWindows = new LinkedList<SimpleWindow>();
+    private LinkedList<DecoratedWindow> decoratedWindows = new LinkedList<>();
 
     // Constructor for the Windows System with width and height parameter
     private WindowSystem(int width, int height) {
@@ -47,33 +48,65 @@ public class WindowSystem extends GraphicsEventSystem {
     @Override
     protected void handlePaint() {
         //  loop through all the lines from line linked list and draw the lines on windowsystem
-        windowManager.draw();
+        for (DecoratedWindow decoratedWindow: decoratedWindows) {
+
+            SimpleWindow simpleWindow = decoratedWindow.simpleWindow;
+            WindowDecoration windowDecoration = decoratedWindow.windowDecoration;
+
+            windowSystem.setColor(windowDecoration.titleBar.color);
+            windowSystem.fillRect(windowDecoration.titleBar.start.getIntX(), windowDecoration.titleBar.start.getIntY(),
+                    windowDecoration.titleBar.end.getIntX(), windowDecoration.titleBar.end.getIntY());
+
+            windowSystem.setColor(windowDecoration.titleText.color);
+            windowSystem.drawString(windowDecoration.titleText.text, windowDecoration.titleText.start.getIntX(),
+                    windowDecoration.titleText.start.getIntY());
+
+            windowSystem.setColor(windowDecoration.closeButton.color);
+            windowSystem.fillRect(windowDecoration.closeButton.start.getIntX(), windowDecoration.closeButton.start.getIntY(),
+                    windowDecoration.closeButton.end.getIntX(), windowDecoration.closeButton.end.getIntY());
+            windowSystem.setColor(windowDecoration.closeButton.label.color);
+            windowSystem.drawString(windowDecoration.closeButton.label.text, windowDecoration.closeButton.label.start.getIntX(),
+                    windowDecoration.closeButton.label.start.getIntY());
+
+            windowSystem.setColor(simpleWindow.color);
+            windowSystem.fillRect(simpleWindow.start.getIntX(), simpleWindow.start.getIntY(), simpleWindow.end.getIntX(),
+                    simpleWindow.end.getIntY());
+
+            windowSystem.setColor(windowDecoration.border.color);
+            windowSystem.drawRect(windowDecoration.border.start.getIntX(), windowDecoration.border.start.getIntY(),
+                    windowDecoration.border.end.getIntX(), windowDecoration.border.end.getIntY());
+
+        }
     }
 
 
     public void add(SimpleWindow simpleWindow) {
         simpleWindow.calculateDimensions(winDim);
-        simpleWindows.add(simpleWindow);
-        windowManager.add(simpleWindow);
+        decoratedWindows.add(new DecoratedWindow(simpleWindow, windowManager.createDecoratedWindow(simpleWindow)));
     }
 
     @Override
     public void handleMouseClicked(int i, int i1) {
         super.handleMouseClicked(i, i1);
         Dimension click = new Dimension(i,i1);
-        System.out.print("CLICKED");
         click.convertToDouble(winDim);
+        DecoratedWindow decoratedWindow;
+
+        Iterator<DecoratedWindow> it = decoratedWindows.descendingIterator();
+
+        while (it.hasNext()){
+            decoratedWindow = it.next();
+
+            if(decoratedWindow.windowDecoration.closeButton.contains(click)){
+                decoratedWindows.remove(decoratedWindow);
+                System.out.print("CLOSE CLICKED");
+                windowSystem.requestRepaint();
+                break;
+            }
+        }
+
         windowManager.handleMouseClick(click);
     }
-
-    /*
-    @Override
-    public void handleMousePressed(int i, int i1) {
-        super.handleMousePressed(i, i1);
-        Dimension click = new Dimension(i,i1);
-        click.convertToDouble(winDim);
-        windowManager.handleMousePress(click);
-    }*/
 
 
     @Override
@@ -81,7 +114,7 @@ public class WindowSystem extends GraphicsEventSystem {
         super.handleMousePressed(i, i1);
         Dimension click = new Dimension(i,i1);
         click.convertToDouble(winDim);
-        windowManager.handleMouseRelease(click);
+//        windowManager.handleMouseRelease(click);
     }
 
 
@@ -103,6 +136,32 @@ public class WindowSystem extends GraphicsEventSystem {
         super.handleMousePressed(i, i1);
         Dimension click = new Dimension(i,i1);
         click.convertToDouble(winDim);
-        windowManager.handleMousePressed(click);
+//        windowManager.handleMousePressed(click);
+
+        DecoratedWindow decoratedWindow;
+
+        Iterator<DecoratedWindow> it = decoratedWindows.descendingIterator();
+
+        while (it.hasNext()){
+            decoratedWindow = it.next();
+
+            if(decoratedWindow.windowDecoration.border.contains(click)){
+                bringToFront(decoratedWindow);
+                if (decoratedWindow.windowDecoration.titleBar.contains(click)){
+                    if (decoratedWindow.windowDecoration.closeButton.contains(click)){
+                        this.handleMouseClicked(click.getIntX(), click.getIntY());
+                        break;
+                    }
+                    windowManager.handleTitleBarClick(decoratedWindow, click);
+                }
+                break;
+            }
+        }
+    }
+
+    private void bringToFront(DecoratedWindow decoratedWindow) {
+        decoratedWindows.remove(decoratedWindow);
+        decoratedWindows.addLast(decoratedWindow);
+        windowSystem.requestRepaint();
     }
 }

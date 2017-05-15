@@ -25,9 +25,4 @@ public class Object {
         start = new Dimension(startX,startY);
         start.convertToInt(windowSystem.winDim);
     }
-
-    public void recalculateEnd() {
-        end.setDoubleX(start.getDoubleX()+size.getDoubleX());
-        end.setDoubleY(start.getDoubleY()+size.getDoubleY());
-    }
 }
