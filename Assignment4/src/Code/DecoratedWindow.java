@@ -1,4 +1,4 @@
-
+package Code;
 
 /**
  * Decorated window data structure which contains a simple window along with its decoration (titlebar, close button)

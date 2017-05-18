@@ -1,4 +1,4 @@
-
+package Code;
 
 /**
  * Data structure to store dimensions such as width, height or coordinates x,y

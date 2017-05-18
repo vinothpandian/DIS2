@@ -1,4 +1,4 @@
-
+package Code;
 /*
  * DIS2 - Assignment 03
  * Desktop and Windows
@@ -23,18 +23,12 @@ public class MyApp {
 		WindowSystem windowSystem = WindowSystem.getInstance();
 
 		// Create simple window A and add it to window system
-		SimpleWindow simpleWindowA = new SimpleWindow(0.1,0.1,200,200,"Window A");
-		simpleWindowA.color = Color.lightGray;
-		windowSystem.add(simpleWindowA);
+		windowSystem.createSimpleWindow(0.1,0.1,0.3,0.3, "Window A");
 
 		// Create simple window B and add it to window system
-		SimpleWindow simpleWindowB = new SimpleWindow(0.2,0.2,300,200,"Window B");
-		simpleWindowB.color = Color.lightGray;
-		windowSystem.add(simpleWindowB);
+		windowSystem.createSimpleWindow(0.2,0.2,0.4,0.4, "Window B");
 
 		// Create simple window C and add it to window system
-		SimpleWindow simpleWindowC = new SimpleWindow(0.3,0.3,200,300,"Window C");
-		simpleWindowC.color = Color.lightGray;
-		windowSystem.add(simpleWindowC);
+		windowSystem.createSimpleWindow(0.3,0.3,0.6,0.6, "Window C");
 	}
 }
