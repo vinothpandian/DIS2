@@ -31,9 +31,12 @@ public class MyApp {
 //		windowSystem.createSimpleWindow(0.2,0.2,0.4,0.4, "Window B");
 
 		// Create simple window C and add it to window system
-		SimpleWindow sw = windowSystem.createSimpleWindow(0.3,0.3,0.6,0.6, "Window C");
+		SimpleWindow helloWorld = windowSystem.createSimpleWindow(0.3,0.3,0.6,0.6, "Window C");
+		RATbutton frenchBtn = new RATbutton("French");
 
-		sw.addListener(new RATmouseListener() {
+
+
+		helloWorld.addListener(new RATmouseListener() {
 
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {

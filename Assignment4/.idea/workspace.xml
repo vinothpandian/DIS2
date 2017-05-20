@@ -16,8 +16,8 @@
       <file leaf-file-name="WindowSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Code/WindowSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
               <folding>
                 <element signature="method#handleMouseMoved#0;class#WindowSystem#0" expanded="false" />
               </folding>
@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RATlabel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RATlabel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Code/RATlabel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+            <state relative-caret-position="221">
+              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -58,8 +58,8 @@
       <file leaf-file-name="RATbutton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Code/RATbutton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="170">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,16 +79,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyApp.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Code/MyApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="101">
+              <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1022#1023#0" expanded="true" />
-                <element signature="e#1062#1063#0" expanded="true" />
+                <element signature="e#1089#1090#0" expanded="true" />
+                <element signature="e#1129#1130#0" expanded="true" />
+                <element signature="method#mousePressed#0;class#988:1485" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RATwidget.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Code/RATwidget.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,8 +107,8 @@
       <file leaf-file-name="WindowManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Code/WindowManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="126" column="79" lean-forward="true" selection-start-line="126" selection-start-column="79" selection-end-line="126" selection-end-column="79" />
+            <state relative-caret-position="141">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -106,8 +117,8 @@
       <file leaf-file-name="SimpleWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Code/SimpleWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="74" column="67" lean-forward="true" selection-start-line="74" selection-start-column="67" selection-end-line="74" selection-end-column="67" />
+            <state relative-caret-position="149">
+              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#748#766#0" expanded="true" />
@@ -130,9 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>titlebar</find>
-      <find>drag</find>
-      <find>activeWindowPosition</find>
       <find>Int</find>
       <find>closeButton</find>
       <find>pressed</find>
@@ -156,10 +164,13 @@
       <find>som</find>
       <find>some</find>
       <find>someo</find>
-      <find>mouseClicked</find>
       <find>someon</find>
       <find>f</find>
+      <find>mouseClicked</find>
       <find>fuc</find>
+      <find>b</find>
+      <find>boun</find>
+      <find>bound</find>
     </findStrings>
     <replaceStrings>
       <replace>closeButton</replace>
@@ -187,14 +198,14 @@
         <option value="$PROJECT_DIR$/src/Code/WindowManager.java" />
         <option value="$PROJECT_DIR$/src/Code/RATmouseEvents.java" />
         <option value="$PROJECT_DIR$/src/GES/GES.jar!/de/rwth/hci/Graphics/GraphicsEventSystem.class" />
-        <option value="$PROJECT_DIR$/src/Code/RATlabel.java" />
-        <option value="$PROJECT_DIR$/src/Code/RATbutton.java" />
         <option value="$PROJECT_DIR$/src/Code/RATwidget.java" />
         <option value="$PROJECT_DIR$/src/Code/RATmouseHandler.java" />
         <option value="$PROJECT_DIR$/src/Code/WindowSystem.java" />
         <option value="$PROJECT_DIR$/src/Code/RATmouseListener.java" />
         <option value="$PROJECT_DIR$/src/Code/SimpleWindow.java" />
         <option value="$PROJECT_DIR$/src/Code/MyApp.java" />
+        <option value="$PROJECT_DIR$/src/Code/RATbutton.java" />
+        <option value="$PROJECT_DIR$/src/Code/RATlabel.java" />
       </list>
     </option>
   </component>
@@ -508,7 +519,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="61" />
+      <option name="time" value="62" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -709,14 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Code/RATwidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Code/Dimension.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -726,32 +729,6 @@
             <element signature="e#2200#2201#0" expanded="true" />
             <element signature="e#2230#2231#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Code/WindowSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding>
-            <element signature="method#handleMouseMoved#0;class#WindowSystem#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Code/RATlabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Code/RATbutton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -779,18 +756,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Code/WindowManager.java">
+    <entry file="file://$PROJECT_DIR$/src/Code/WindowSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="126" column="79" lean-forward="true" selection-start-line="126" selection-start-column="79" selection-end-line="126" selection-end-column="79" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding>
+            <element signature="method#handleMouseMoved#0;class#WindowSystem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Code/MyApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1089#1090#0" expanded="true" />
+            <element signature="e#1129#1130#0" expanded="true" />
+            <element signature="method#mousePressed#0;class#988:1485" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Code/SimpleWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="74" column="67" lean-forward="true" selection-start-line="74" selection-start-column="67" selection-end-line="74" selection-end-column="67" />
+        <state relative-caret-position="149">
+          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#748#766#0" expanded="true" />
@@ -800,15 +792,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Code/MyApp.java">
+    <entry file="file://$PROJECT_DIR$/src/Code/WindowManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1022#1023#0" expanded="true" />
-            <element signature="e#1062#1063#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="141">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Code/RATbutton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Code/RATwidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Code/RATlabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
