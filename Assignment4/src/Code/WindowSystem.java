@@ -63,7 +63,6 @@ public class WindowSystem extends GraphicsEventSystem {
         } else if (windowManager == null){
             decoratedWindows.add(new DecoratedWindow(simpleWindow, null));
         }
-
         return simpleWindow;
     }
 
@@ -94,17 +93,19 @@ public class WindowSystem extends GraphicsEventSystem {
         // Loop through all decorated windows to find which window has been affected
         while (it.hasNext()) {
             decoratedWindow = it.next();
+//            if (windowManager != null){
+//                windowManager.handleMouseClick(decoratedWindow, click);
+//                break;
+//            }
+//            if (decoratedWindow.simpleWindow.contains(click)){
+//                System.out.println("Clicked SimpleWindow");
+//                break;
+//            }
 
-            if (windowManager != null){
-                windowManager.handleMouseClick(decoratedWindow, click);
-                break;
-            }
-            if (decoratedWindow.simpleWindow.contains(click)){
-                System.out.println("Clicked SimpleWindow");
-                break;
-            }
+            decoratedWindow.simpleWindow.mouseClicked(click, RATmouseEvent.CLICKED);
+           /* decoratedWindow.simpleWindow.mouseClicked(click,RATmouseEvent.CLICKED);
+            decoratedWindow.windowDecoration.titlebar.mouseClicked(click,RATmouseEvent.CLICKED);*/
         }
-
     }
 
 
@@ -181,7 +182,9 @@ public class WindowSystem extends GraphicsEventSystem {
                     windowManager.removeActiveWindowDecoration(decoratedWindows.getLast());
                     windowManager.bringToFront(decoratedWindow);
                 }
-                System.out.println("Pressed SimpleWindow");
+
+
+
                 break;
             }
         }

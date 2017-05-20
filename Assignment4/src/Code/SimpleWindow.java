@@ -13,7 +13,9 @@ package Code;
  *
  */
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class SimpleWindow{
 
@@ -27,6 +29,7 @@ public class SimpleWindow{
 	public Color color = Color.lightGray;
 	public String title;
 	public LinkedList<SimpleWindow> children = new LinkedList<>();
+	private List<RATmouseListener> listeners = new ArrayList<RATmouseListener>();
 
 	public SimpleWindow(double doubleX, double doubleY, double doubleX1, double doubleY1) {
 		this(doubleX, doubleY, doubleX1, doubleY1, "Window:"+windowID);
@@ -77,4 +80,19 @@ public class SimpleWindow{
 		this.start.convertToInt();
 		this.end.convertToInt();
 	}
+
+
+
+	public void addListener(RATmouseListener toAdd) {
+		listeners.add(toAdd);
+	}
+
+
+	public void mouseClicked(Dimension click, RATmouseEvent event){
+		System.out.println("CLICKED");
+
+		for (RATmouseListener hl : listeners)
+			hl.mouseClicked(click, event);
+	}
+
 }
