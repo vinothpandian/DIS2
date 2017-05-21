@@ -7,12 +7,22 @@ import java.awt.*;
  */
 public class RATlabel extends RATwidget {
 
-    Color labelColor;
+    public String text;
+    public Dimension start;
+    public Color color;
 
+    public RATlabel(double doubleX, double doubleY, String text) {
+        super(doubleX, doubleY, doubleX+text.length()/100, doubleY+text.length()/100);
 
-    public RATlabel(double doubleX, double doubleY, double doubleX1, double doubleY1, String title) {
-        super(doubleX, doubleY, doubleX1, doubleY1, title);
+        this.start = new Dimension(doubleX, doubleY);
+        this.text = text;
+        this.color = Color.white;
+    }
 
-
+    public RATlabel(double doubleX, double doubleY, double doubleX1, double doubleY1, String text) {
+        super(doubleX, doubleY, doubleX1, doubleY1);
+        this.text = text;
+        this.start = start;
+        this.color = Color.white;
     }
 }

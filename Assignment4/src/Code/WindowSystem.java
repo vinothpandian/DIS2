@@ -67,15 +67,17 @@ public class WindowSystem extends GraphicsEventSystem {
     }
 
 
-    public SimpleWindow createSimpleWindow(double doubleX, double doubleY, double doubleX1, double doubleY1, String
+    protected SimpleWindow createSimpleWindow(double doubleX, double doubleY, double doubleX1, double doubleY1, String
             title) {
         return this.createSimpleWindow(doubleX, doubleY, doubleX1, doubleY1, true, title);
     }
 
     //  Removes the decorated window from the linked list
-    public void removeWindow(DecoratedWindow decoratedWindow) {
-        decoratedWindows.remove(decoratedWindow);
-        windowSystem.requestRepaint();
+    protected void removeWindow(DecoratedWindow decoratedWindow) {
+        if (decoratedWindow != null){
+            decoratedWindows.remove(decoratedWindow);
+            windowSystem.requestRepaint();
+        }
     }
 
     /*  Override mouse click handler from Graphic Event Library and find which application is being affected by the
@@ -209,15 +211,16 @@ public class WindowSystem extends GraphicsEventSystem {
                     simpleWindow.end.getIntY());
             for (SimpleWindow child: simpleWindow.children){
                 if (child instanceof RATbutton){
-                    windowSystem.setColor(child.color);
+                    windowSystem.setColor(((RATbutton) child).buttonColor);
                     windowSystem.fillRect(child.start.getIntX(), child.start.getIntY(), child.end.getIntX(),
                             child.end.getIntY());
-                    windowSystem.setColor(((RATbutton) child).labelColor);
-                    windowSystem.drawString(child.title, (child.start.getIntX()+child.end.getIntX())/2-((RATbutton) child).textPosition,
-                            (child.start.getIntY()+child.end.getIntY())/2-((RATbutton) child).textPosition);
+                    windowSystem.setColor(((RATbutton) child).color);
+                    windowSystem.drawString(((RATbutton) child).text, ((child.start.getIntX()+child.end.getIntX())
+                                    /2-((RATbutton) child).textPosition),
+                            ((child.start.getIntY()+child.end.getIntY())/2)+4);
                 } else if (child instanceof RATlabel){
-                    windowSystem.setColor(((RATlabel)child).labelColor);
-                    windowSystem.drawString(child.title, child.start.getIntX(), child.start.getIntY());
+                    windowSystem.setColor(((RATlabel)child).color);
+                    windowSystem.drawString(((RATlabel)child).text, child.start.getIntX(), child.start.getIntY());
 
                 }
 
@@ -226,4 +229,16 @@ public class WindowSystem extends GraphicsEventSystem {
         }
     }
 
+    public void closeWindow(SimpleWindow helloWorld) {
+
+        DecoratedWindow toRemove = null;
+
+        for (DecoratedWindow decoratedWindow : decoratedWindows) {
+            if (decoratedWindow.simpleWindow == helloWorld) {
+                toRemove = decoratedWindow;
+                break;
+            }
+        }
+        this.removeWindow(toRemove);
+    }
 }

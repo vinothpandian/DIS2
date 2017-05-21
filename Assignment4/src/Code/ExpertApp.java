@@ -16,54 +16,54 @@ public class ExpertApp {
 		SimpleWindow ratulator = windowSystem.createSimpleWindow(0.1, 0.1, 0.4,
 				0.6, "RATulator");
 		RATlabel view = new RATlabel(0.13, 0.17, 0.8, 0.8, "");
-		view.labelColor = Color.white;
+		view.color = Color.white;
 
-		RATbutton btn7 = new RATbutton(0.13, 0.33, 0.29, 0.44, "7", 0.2);
-		RATbutton btn4 = new RATbutton(0.13, 0.49, 0.29, 0.60, "4", 0.2);
-		RATbutton btn1 = new RATbutton(0.13, 0.64, 0.29, 0.74, "1", 0.2);
-		RATbutton btn0 = new RATbutton(0.13, 0.80, 0.29, 0.92, "0", 0.2);
+		RATbutton btn7 = new RATbutton(0.13, 0.33, 0.29, 0.44, "7");
+		RATbutton btn4 = new RATbutton(0.13, 0.49, 0.29, 0.60, "4");
+		RATbutton btn1 = new RATbutton(0.13, 0.64, 0.29, 0.74, "1");
+		RATbutton btn0 = new RATbutton(0.13, 0.80, 0.29, 0.92, "0");
 
-		RATbutton btn8 = new RATbutton(0.32, 0.33, 0.48, 0.44, "8", 0.2);
-		RATbutton btn5 = new RATbutton(0.32, 0.49, 0.48, 0.60, "5", 0.2);
-		RATbutton btn2 = new RATbutton(0.32, 0.64, 0.48, 0.74, "2", 0.2);
-		RATbutton btnDecimal = new RATbutton(0.32, 0.80, 0.48, 0.92, ".", 0.2);
+		RATbutton btn8 = new RATbutton(0.32, 0.33, 0.48, 0.44, "8");
+		RATbutton btn5 = new RATbutton(0.32, 0.49, 0.48, 0.60, "5");
+		RATbutton btn2 = new RATbutton(0.32, 0.64, 0.48, 0.74, "2");
+		RATbutton btnDecimal = new RATbutton(0.32, 0.80, 0.48, 0.92, ".");
 
-		RATbutton btn9 = new RATbutton(0.52, 0.33, 0.67, 0.44, "9", 0.2);
-		RATbutton btn6 = new RATbutton(0.52, 0.49, 0.67, 0.60, "6", 0.2);
-		RATbutton btn3 = new RATbutton(0.52, 0.64, 0.67, 0.74, "3", 0.2);
-		RATbutton btnEquals = new RATbutton(0.52, 0.80, 0.67, 0.92, "=", 0.2);
+		RATbutton btn9 = new RATbutton(0.52, 0.33, 0.67, 0.44, "9");
+		RATbutton btn6 = new RATbutton(0.52, 0.49, 0.67, 0.60, "6");
+		RATbutton btn3 = new RATbutton(0.52, 0.64, 0.67, 0.74, "3");
+		RATbutton btnEquals = new RATbutton(0.52, 0.80, 0.67, 0.92, "=");
 
-		RATbutton btnDivide = new RATbutton(0.71, 0.33, 0.86, 0.44, "/", 0.2);
-		RATbutton btnMultiply = new RATbutton(0.71, 0.49, 0.86, 0.60, "*", 0.2);
-		RATbutton btnMinus = new RATbutton(0.71, 0.64, 0.86, 0.74, "-", 0.2);
-		RATbutton btnPlus = new RATbutton(0.71, 0.80, 0.86, 0.92, "+", 0.2);
+		RATbutton btnDivide = new RATbutton(0.71, 0.33, 0.86, 0.44, "/");
+		RATbutton btnMultiply = new RATbutton(0.71, 0.49, 0.86, 0.60, "*");
+		RATbutton btnMinus = new RATbutton(0.71, 0.64, 0.86, 0.74, "-");
+		RATbutton btnPlus = new RATbutton(0.71, 0.80, 0.86, 0.92, "+");
 
 		btn7.addListener(new RATmouseAdaptor(btn7) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "7";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btn4.addListener(new RATmouseAdaptor(btn4) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "4";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btn1.addListener(new RATmouseAdaptor(btn1) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "1";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btn0.addListener(new RATmouseAdaptor(btn0) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "0";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 
@@ -71,28 +71,28 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "8";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btn5.addListener(new RATmouseAdaptor(btn5) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "5";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btn2.addListener(new RATmouseAdaptor(btn2) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "2";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btnDecimal.addListener(new RATmouseAdaptor(btnDecimal) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ".";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 
@@ -100,21 +100,21 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "9";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btn6.addListener(new RATmouseAdaptor(btn6) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "6";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btn3.addListener(new RATmouseAdaptor(btn3) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "3";
-				view.title = numbers;
+				view.text = numbers;
 			}
 		});
 		btnEquals.addListener(new RATmouseAdaptor(btnEquals) {
@@ -140,7 +140,7 @@ public class ExpertApp {
 						}
 						number2 = Float.parseFloat(tempNumbers[counter + 1]);
 					} catch (Exception e) {
-						view.title = "Don't mess arround with me!!";
+						view.text = "Don't mess arround with me!!";
 						counter = 100000;
 						break;
 					}
@@ -161,7 +161,7 @@ public class ExpertApp {
 				numbers = "";
 
 				if (counter != 100000) {
-					view.title = Float.toString(result);
+					view.text = Float.toString(result);
 				}
 			}
 		});
@@ -170,7 +170,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title = numbers;
+				view.text = numbers;
 				operators += "/;";
 			}
 		});
@@ -178,7 +178,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title = numbers;
+				view.text = numbers;
 				operators += "*;";
 			}
 		});
@@ -186,7 +186,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title = numbers;
+				view.text = numbers;
 				operators += "-;";
 			}
 		});
@@ -194,46 +194,46 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title = numbers;
+				view.text = numbers;
 				operators += "+;";
 			}
 		});
 
-		btn7.color = Color.GRAY;
-		btn7.labelColor = Color.PINK;
-		btn4.color = Color.GRAY;
-		btn4.labelColor = Color.PINK;
-		btn1.color = Color.GRAY;
-		btn1.labelColor = Color.PINK;
-		btn0.color = Color.GRAY;
-		btn0.labelColor = Color.PINK;
+		btn7.buttonColor = Color.white;
+		btn7.color = Color.black;
+		btn4.buttonColor = Color.white;
+		btn4.color = Color.black;
+		btn1.buttonColor = Color.white;
+		btn1.color = Color.black;
+		btn0.buttonColor = Color.white;
+		btn0.color = Color.black;
 
-		btn8.color = Color.GRAY;
-		btn8.labelColor = Color.PINK;
-		btn5.color = Color.GRAY;
-		btn5.labelColor = Color.PINK;
-		btn2.color = Color.GRAY;
-		btn2.labelColor = Color.PINK;
-		btnDecimal.color = Color.GRAY;
-		btnDecimal.labelColor = Color.PINK;
+		btn8.buttonColor = Color.white;
+		btn8.color = Color.black;
+		btn5.buttonColor = Color.white;
+		btn5.color = Color.black;
+		btn2.buttonColor = Color.white;
+		btn2.color = Color.black;
+		btnDecimal.buttonColor = Color.white;
+		btnDecimal.color = Color.black;
 
-		btn9.color = Color.GRAY;
-		btn9.labelColor = Color.PINK;
-		btn6.color = Color.GRAY;
-		btn6.labelColor = Color.PINK;
-		btn3.color = Color.GRAY;
-		btn3.labelColor = Color.PINK;
-		btnEquals.color = Color.GRAY;
-		btnEquals.labelColor = Color.PINK;
+		btn9.buttonColor = Color.white;
+		btn9.color = Color.black;
+		btn6.buttonColor = Color.white;
+		btn6.color = Color.black;
+		btn3.buttonColor = Color.white;
+		btn3.color = Color.black;
+		btnEquals.buttonColor = Color.white;
+		btnEquals.color = Color.black;
 
-		btnDivide.color = Color.GRAY;
-		btnDivide.labelColor = Color.PINK;
-		btnMultiply.color = Color.GRAY;
-		btnMultiply.labelColor = Color.PINK;
-		btnMinus.color = Color.GRAY;
-		btnMinus.labelColor = Color.PINK;
-		btnPlus.color = Color.GRAY;
-		btnPlus.labelColor = Color.PINK;
+		btnDivide.buttonColor = Color.white;
+		btnDivide.color = Color.black;
+		btnMultiply.buttonColor = Color.white;
+		btnMultiply.color = Color.black;
+		btnMinus.buttonColor = Color.white;
+		btnMinus.color = Color.black;
+		btnPlus.buttonColor = Color.white;
+		btnPlus.color = Color.black;
 
 		ratulator.add(view);
 		ratulator.add(btn7);
@@ -257,7 +257,7 @@ public class ExpertApp {
 		ratulator.add(btnPlus);
 
 		numbers = "";
-		view.title = "";
+		view.text = "";
 		operators = "";
 	}
 }
