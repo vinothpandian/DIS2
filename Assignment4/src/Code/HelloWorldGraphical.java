@@ -25,120 +25,40 @@ public class HelloWorldGraphical {
 
 		english.color = Color.GRAY;
 		english.labelColor = Color.white;
-		english.addListener(new RATmouseListener() {
+		english.addListener(new RATmouseAdaptor(english) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				message.title = "Good Day!";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
 			}
 		});
 		helloWorld.add(english);
 
 		deutsch.color = Color.GRAY;
 		deutsch.labelColor = Color.white;
-		deutsch.addListener(new RATmouseListener() {
+		deutsch.addListener(new RATmouseAdaptor(deutsch) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				message.title = "Guten Tag!";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
 			}
 		});
 		helloWorld.add(deutsch);
 
 		francais.color = Color.GRAY;
 		francais.labelColor = Color.white;
-		francais.addListener(new RATmouseListener() {
+		francais.addListener(new RATmouseAdaptor(francais) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				message.title = "Bonjour or whatever it is!";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
 			}
 		});
 		helloWorld.add(francais);
 				
 		end.color = Color.GRAY;
 		end.labelColor = Color.white;
-		end.addListener(new RATmouseListener() {
+		end.addListener(new RATmouseAdaptor(end) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
 			}
 		});
 		helloWorld.add(end);

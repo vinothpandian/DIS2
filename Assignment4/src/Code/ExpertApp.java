@@ -38,306 +38,86 @@ public class ExpertApp {
 		RATbutton btnMinus = new RATbutton(0.71, 0.64, 0.86, 0.74, "-", 0.2);
 		RATbutton btnPlus = new RATbutton(0.71, 0.80, 0.86, 0.92, "+", 0.2);
 
-		btn7.addListener(new RATmouseListener() {
+		btn7.addListener(new RATmouseAdaptor(btn7) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "7";
-				view.title += "7";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btn4.addListener(new RATmouseListener() {
+		btn4.addListener(new RATmouseAdaptor(btn4) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "4";
-				view.title += "4";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btn1.addListener(new RATmouseListener() {
+		btn1.addListener(new RATmouseAdaptor(btn1) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "1";
-				view.title += "1";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btn0.addListener(new RATmouseListener() {
+		btn0.addListener(new RATmouseAdaptor(btn0) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "0";
-				view.title += "0";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
 
-		btn8.addListener(new RATmouseListener() {
+		btn8.addListener(new RATmouseAdaptor(btn8) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "8";
-				view.title += "8";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btn5.addListener(new RATmouseListener() {
+		btn5.addListener(new RATmouseAdaptor(btn5) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "5";
-				view.title += "5";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btn2.addListener(new RATmouseListener() {
+		btn2.addListener(new RATmouseAdaptor(btn2) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "2";
-				view.title += "2";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btnDecimal.addListener(new RATmouseListener() {
+		btnDecimal.addListener(new RATmouseAdaptor(btnDecimal) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ".";
-				view.title += ".";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
 
-		btn9.addListener(new RATmouseListener() {
+		btn9.addListener(new RATmouseAdaptor(btn9) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "9";
-				view.title += "9";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btn6.addListener(new RATmouseListener() {
+		btn6.addListener(new RATmouseAdaptor(btn6) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "6";
-				view.title += "6";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btn3.addListener(new RATmouseListener() {
+		btn3.addListener(new RATmouseAdaptor(btn3) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "3";
-				view.title += "3";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
+				view.title = numbers;
 			}
 		});
-		btnEquals.addListener(new RATmouseListener() {
+		btnEquals.addListener(new RATmouseAdaptor(btnEquals) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 
@@ -353,7 +133,11 @@ public class ExpertApp {
 					float number2 = 0.0f;
 
 					try {
-						number1 = Float.parseFloat(tempNumbers[counter]);
+						if (counter == 0) {
+							number1 = Float.parseFloat(tempNumbers[counter]);
+						} else {
+							number1 = result;
+						}
 						number2 = Float.parseFloat(tempNumbers[counter + 1]);
 					} catch (Exception e) {
 						view.title = "Don't mess arround with me!!";
@@ -380,138 +164,38 @@ public class ExpertApp {
 					view.title = Float.toString(result);
 				}
 			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
-			}
 		});
 
-		btnDivide.addListener(new RATmouseListener() {
+		btnDivide.addListener(new RATmouseAdaptor(btnDivide) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title += "/";
+				view.title = numbers;
 				operators += "/;";
 			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
-			}
 		});
-		btnMultiply.addListener(new RATmouseListener() {
+		btnMultiply.addListener(new RATmouseAdaptor(btnMultiply) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title += "*";
+				view.title = numbers;
 				operators += "*;";
 			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
-			}
 		});
-		btnMinus.addListener(new RATmouseListener() {
+		btnMinus.addListener(new RATmouseAdaptor(btnMinus) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title += "-";
+				view.title = numbers;
 				operators += "-;";
 			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
-			}
 		});
-		btnPlus.addListener(new RATmouseListener() {
+		btnPlus.addListener(new RATmouseAdaptor(btnPlus) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
-				view.title += "+";
+				view.title = numbers;
 				operators += "+;";
-			}
-
-			@Override
-			public void mousePressed(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-			}
-
-			@Override
-			public void mouseDragged(Dimension click, RATmouseEvent event) {
-
 			}
 		});
 
