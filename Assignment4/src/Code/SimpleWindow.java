@@ -105,7 +105,7 @@ public class SimpleWindow{
 	public void mousePressed(Dimension click, RATmouseEvent event){
 		for (SimpleWindow child : children){
 			if (child.contains(click) && child.listener != null){
-				child.listener.mouseClicked(click,event);
+				child.listener.mousePressed(click, event);
 			}
 		}
 	}
@@ -113,7 +113,7 @@ public class SimpleWindow{
 	public void mouseReleased(Dimension click, RATmouseEvent event){
 		for (SimpleWindow child : children){
 			if (child.contains(click) && child.listener != null){
-				child.listener.mouseClicked(click,event);
+				child.listener.mouseReleased(click, event);
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class SimpleWindow{
 	public void mouseMoved(Dimension click, RATmouseEvent event){
 		for (SimpleWindow child : children){
 			if (child.contains(click) && child.listener != null){
-				child.listener.mouseClicked(click,event);
+				child.listener.mouseMoved(click, event);
 			}
 		}
 	}
@@ -129,7 +129,7 @@ public class SimpleWindow{
 	public void mouseDragged(Dimension click, RATmouseEvent event){
 		for (SimpleWindow child : children){
 			if (child.contains(click) && child.listener != null){
-				child.listener.mouseClicked(click,event);
+				child.listener.mouseDragged(click, event);
 			}
 		}
 	}
