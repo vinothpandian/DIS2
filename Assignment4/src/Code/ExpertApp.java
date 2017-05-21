@@ -16,6 +16,7 @@ public class ExpertApp {
 		SimpleWindow ratulator = windowSystem.createSimpleWindow(0.1, 0.1, 0.4,
 				0.6, "RATulator");
 		RATlabel view = new RATlabel(0.13, 0.17, 0.8, 0.8, "");
+		view.labelColor = Color.white;
 
 		RATbutton btn7 = new RATbutton(0.13, 0.33, 0.29, 0.44, "7", 0.2);
 		RATbutton btn4 = new RATbutton(0.13, 0.49, 0.29, 0.60, "4", 0.2);
@@ -41,6 +42,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "7";
+				view.title += "7";
 			}
 
 			@Override
@@ -67,6 +69,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "4";
+				view.title += "4";
 			}
 
 			@Override
@@ -93,6 +96,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "1";
+				view.title += "1";
 			}
 
 			@Override
@@ -119,6 +123,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "0";
+				view.title += "0";
 			}
 
 			@Override
@@ -146,6 +151,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "8";
+				view.title += "8";
 			}
 
 			@Override
@@ -172,6 +178,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "5";
+				view.title += "5";
 			}
 
 			@Override
@@ -198,6 +205,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "2";
+				view.title += "2";
 			}
 
 			@Override
@@ -224,6 +232,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ".";
+				view.title += ".";
 			}
 
 			@Override
@@ -251,6 +260,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "9";
+				view.title += "9";
 			}
 
 			@Override
@@ -277,6 +287,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "6";
+				view.title += "6";
 			}
 
 			@Override
@@ -303,6 +314,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += "3";
+				view.title += "3";
 			}
 
 			@Override
@@ -394,6 +406,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
+				view.title += "/";
 				operators += "/;";
 			}
 
@@ -421,6 +434,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
+				view.title += "*";
 				operators += "*;";
 			}
 
@@ -448,6 +462,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
+				view.title += "-";
 				operators += "-;";
 			}
 
@@ -475,6 +490,7 @@ public class ExpertApp {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
 				numbers += ";";
+				view.title += "+";
 				operators += "+;";
 			}
 
@@ -557,6 +573,7 @@ public class ExpertApp {
 		ratulator.add(btnPlus);
 
 		numbers = "";
+		view.title = "";
 		operators = "";
 	}
 }

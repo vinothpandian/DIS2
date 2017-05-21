@@ -183,7 +183,6 @@ public class WindowSystem extends GraphicsEventSystem {
                     windowManager.removeActiveWindowDecoration(decoratedWindows.getLast());
                     windowManager.bringToFront(decoratedWindow);
                 }
-
                 break;
             }
         }

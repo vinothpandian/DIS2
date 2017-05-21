@@ -24,7 +24,7 @@ public class HelloWorldGraphical {
 		RATlabel message = new RATlabel(0.43, 0.63, 0.8, 0.8, "Message");
 
 		english.color = Color.GRAY;
-		english.labelColor = Color.PINK;
+		english.labelColor = Color.white;
 		english.addListener(new RATmouseListener() {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
@@ -54,7 +54,7 @@ public class HelloWorldGraphical {
 		helloWorld.add(english);
 
 		deutsch.color = Color.GRAY;
-		deutsch.labelColor = Color.PINK;
+		deutsch.labelColor = Color.white;
 		deutsch.addListener(new RATmouseListener() {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
@@ -84,7 +84,7 @@ public class HelloWorldGraphical {
 		helloWorld.add(deutsch);
 
 		francais.color = Color.GRAY;
-		francais.labelColor = Color.PINK;
+		francais.labelColor = Color.white;
 		francais.addListener(new RATmouseListener() {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
@@ -114,7 +114,7 @@ public class HelloWorldGraphical {
 		helloWorld.add(francais);
 				
 		end.color = Color.GRAY;
-		end.labelColor = Color.PINK;
+		end.labelColor = Color.white;
 		end.addListener(new RATmouseListener() {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
