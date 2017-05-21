@@ -19,8 +19,7 @@ public class WindowManager {
 
     //  Active window object stores the simplewindow and the window decoration of the top most window
     DecoratedWindow activeWindow;
-    //  Stores the position of the active window
-    Dimension activeWindowPosition;
+
     //  Stores the position of the mouse click
     Dimension initialMousePosition;
 
@@ -59,16 +58,16 @@ public class WindowManager {
     private void moveWindow(Dimension drag) {
         /*  Checks whether a window is active and its initial position and mouse pointer's initial position is set
         before  starting the move event*/
-        if (activeWindow != null && activeWindowPosition != null && initialMousePosition != null) {
+        if (activeWindow != null && activeWindow.simpleWindow.initial != null && initialMousePosition != null) {
             /*  Gets the current mouse position and subtracts initial mouse position, then adds the result to
                 the initial window position to get realtime movement of window*/
 
-            activeWindow.simpleWindow.move(
-                    activeWindowPosition.getDoubleX() + drag.getDoubleX() - initialMousePosition.getDoubleX(),
-                    activeWindowPosition.getDoubleY() + drag.getDoubleY() - initialMousePosition.getDoubleY());
+            activeWindow.simpleWindow.moveBox(
+                    drag.getDoubleX() - initialMousePosition.getDoubleX(),
+                    drag.getDoubleY() - initialMousePosition.getDoubleY());
 
-            activeWindow.windowDecoration.reposition(activeWindowPosition.getDoubleX() + drag.getDoubleX() - initialMousePosition.getDoubleX(),
-                    activeWindowPosition.getDoubleY() + drag.getDoubleY() - initialMousePosition.getDoubleY());
+            activeWindow.windowDecoration.reposition(activeWindow.simpleWindow.initial.getDoubleX() + drag.getDoubleX() - initialMousePosition.getDoubleX(),
+                    activeWindow.simpleWindow.initial.getDoubleY() + drag.getDoubleY() - initialMousePosition.getDoubleY());
 
             //  calls window system for repainting the window system
             windowSystem.requestRepaint();
@@ -88,9 +87,7 @@ public class WindowManager {
         //  assigns the active window
         activeWindow = decoratedWindow;
         //  sets the current active window position for calculations in mouse drag
-        activeWindowPosition = new Dimension(activeWindow.simpleWindow.start.getDoubleX(), activeWindow.simpleWindow
-                .start.getDoubleY());
-        activeWindowPosition.convertToInt();
+        activeWindow.simpleWindow.setInitialPosition();
         //  sets the initial mouse position for calculations in mouse drag
         initialMousePosition = click;
     }
@@ -116,10 +113,11 @@ public class WindowManager {
     public void handleMouseRelease(Dimension click) {
         //  resets the color
         if (activeWindow != null){
+            activeWindow.simpleWindow.setInitialPosition();
             removeActiveWindowDecoration(activeWindow);
         }
         activeWindow = null;
-        activeWindowPosition = null;
+
         initialMousePosition = null;
 
     }
@@ -135,27 +133,21 @@ public class WindowManager {
                 simpleWindow.end.getDoubleX(), simpleWindow.end.getDoubleY(), simpleWindow.title)));
     }
 
-    public void handleMouseClick(DecoratedWindow decoratedWindow, Dimension click) {
-        if (decoratedWindow.windowDecoration.closeButton.contains(click)){
-            windowSystem.removeWindow(decoratedWindow);
-        }else  if(decoratedWindow.windowDecoration.maxButton.contains(click)){
-
-            SimpleWindow sw = decoratedWindow.simpleWindow;
-            WindowDecoration wd = decoratedWindow.windowDecoration;
-
-            if (sw.end.getDoubleX() - sw.start.getDoubleX() != 1.0) {
-                beforeMax = new Dimension(sw.start.getDoubleX(), sw.start.getDoubleY());
-                sw.setSize(0, wd.titlebarSize, 1, 1);
-                wd.maximise();
-            } else {
-                sw.move(beforeMax.getDoubleX(),beforeMax.getDoubleY());
-                sw.recalculateDimensions();
-                wd.reposition(sw.start.getDoubleX(), sw.start.getDoubleY());
-            }
-
-
-            windowSystem.requestRepaint();
-        }
-
-    }
+//    public void handleMaximise(DecoratedWindow decoratedWindow){
+//        bringToFront(decoratedWindow);
+//        SimpleWindow sw = decoratedWindow.simpleWindow;
+//        WindowDecoration wd = decoratedWindow.windowDecoration;
+//
+//        if (sw.end.getDoubleX() - sw.start.getDoubleX() != 1.0) {
+//            beforeMax = new Dimension(sw.start.getDoubleX(), sw.start.getDoubleY());
+//            sw.resizeBox(0, wd.titlebarSize, 1, 1);
+//            wd.maximise();
+//        } else {
+//            sw.move(beforeMax.getDoubleX(),beforeMax.getDoubleY());
+//            sw.recalculateDimensions();
+//            wd.reposition(sw.start.getDoubleX(), sw.start.getDoubleY());
+//        }
+//
+//        windowSystem.requestRepaint();
+//    }
 }

@@ -15,9 +15,9 @@ package Code;
  *
  */
 
-import Code.WindowManager;
 import de.rwth.hci.Graphics.GraphicsEventSystem;
 
+import java.awt.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -93,18 +93,22 @@ public class WindowSystem extends GraphicsEventSystem {
         // Loop through all decorated windows to find which window has been affected
         while (it.hasNext()) {
             decoratedWindow = it.next();
-//            if (windowManager != null){
-//                windowManager.handleMouseClick(decoratedWindow, click);
-//                break;
-//            }
-//            if (decoratedWindow.simpleWindow.contains(click)){
-//                System.out.println("Clicked SimpleWindow");
-//                break;
-//            }
+            if (windowManager != null){
+                if (decoratedWindow.windowDecoration.closeButton.contains(click)){
+                    windowSystem.removeWindow(decoratedWindow);
+                    break;
+                }
+//                else  if(decoratedWindow.windowDecoration.maxButton.contains(click)){
+//                    windowManager.handleMaximise(decoratedWindow);
+//                    break;
+//                }
+            }
+            if (decoratedWindow.simpleWindow.contains(click)){
+                decoratedWindow.simpleWindow.mouseClicked(click, RATmouseEvent.CLICKED);
+                windowSystem.requestRepaint();
+                break;
+            }
 
-            decoratedWindow.simpleWindow.mouseClicked(click, RATmouseEvent.CLICKED);
-           /* decoratedWindow.simpleWindow.mouseClicked(click,RATmouseEvent.CLICKED);
-            decoratedWindow.windowDecoration.titlebar.mouseClicked(click,RATmouseEvent.CLICKED);*/
         }
     }
 
@@ -169,9 +173,6 @@ public class WindowSystem extends GraphicsEventSystem {
                 if (decoratedWindow.windowDecoration.closeButton.contains(click)){
                     break;
                 }
-                if (decoratedWindow.windowDecoration.maxButton.contains(click)){
-                    break;
-                }
                 if (decoratedWindow.windowDecoration.titlebar.contains(click)){
                     windowManager.handleTitleBarPress(decoratedWindow, click);
                     break;
@@ -182,8 +183,6 @@ public class WindowSystem extends GraphicsEventSystem {
                     windowManager.removeActiveWindowDecoration(decoratedWindows.getLast());
                     windowManager.bringToFront(decoratedWindow);
                 }
-
-
 
                 break;
             }
@@ -209,6 +208,21 @@ public class WindowSystem extends GraphicsEventSystem {
             windowSystem.setColor(simpleWindow.color);
             windowSystem.fillRect(simpleWindow.start.getIntX(), simpleWindow.start.getIntY(), simpleWindow.end.getIntX(),
                     simpleWindow.end.getIntY());
+            for (SimpleWindow child: simpleWindow.children){
+                if (child instanceof RATbutton){
+                    windowSystem.setColor(child.color);
+                    windowSystem.fillRect(child.start.getIntX(), child.start.getIntY(), child.end.getIntX(),
+                            child.end.getIntY());
+                    windowSystem.setColor(((RATbutton) child).labelColor);
+                    windowSystem.drawString(child.title, (child.start.getIntX()+child.end.getIntX())/2-((RATbutton) child).textPosition,
+                            (child.start.getIntY()+child.end.getIntY())/2-((RATbutton) child).textPosition);
+                } else if (child instanceof RATlabel){
+                    windowSystem.setColor(((RATlabel)child).labelColor);
+                    windowSystem.drawString(child.title, child.start.getIntX(), child.start.getIntY());
+
+                }
+
+            }
 
         }
     }

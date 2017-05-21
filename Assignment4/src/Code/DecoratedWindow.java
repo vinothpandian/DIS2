@@ -14,5 +14,4 @@ public class DecoratedWindow {
         this.simpleWindow = simpleWindow;
         this.windowDecoration = windowDecoration;
     }
-
 }

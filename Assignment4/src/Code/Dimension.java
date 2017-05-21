@@ -62,6 +62,8 @@ public class Dimension {
         this.intY = pixelY(this.doubleY,windowSystem.winDim.intY);
     }
 
+
+
     //  Getter for integer x
     public int getIntX() {
         return intX;

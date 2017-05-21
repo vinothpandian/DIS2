@@ -25,15 +25,18 @@ public class SimpleWindow{
 	public Dimension start;
 	public Dimension end;
 	public Dimension size;
+	public Dimension initial;
 	//	Sets a default color of simple window
 	public Color color = Color.lightGray;
 	public String title;
 	public LinkedList<SimpleWindow> children = new LinkedList<>();
-	private List<RATmouseListener> listeners = new ArrayList<RATmouseListener>();
+	private RATmouseListener listener;
 
 	public SimpleWindow(double doubleX, double doubleY, double doubleX1, double doubleY1) {
 		this(doubleX, doubleY, doubleX1, doubleY1, "Window:"+windowID);
 	}
+
+
 
 	public SimpleWindow(double doubleX, double doubleY, double doubleX1, double doubleY1, String title) {
 		this.start = new Dimension(doubleX, doubleY);
@@ -46,6 +49,8 @@ public class SimpleWindow{
 		this.size.convertToInt();
 
 		this.title = title;
+
+
 	}
 
 	//  Checks whether the simple window contains a given point
@@ -72,7 +77,7 @@ public class SimpleWindow{
 		this.start.convertToInt();
 	}
 
-	public void setSize(double x, double y, double x1, double y1) {
+	public void resize(double x, double y, double x1, double y1) {
 		this.start.setDoubleX(x);
 		this.start.setDoubleY(y);
 		this.end.setDoubleX(x1);
@@ -81,18 +86,108 @@ public class SimpleWindow{
 		this.end.convertToInt();
 	}
 
-
+	public void addChildWindow(SimpleWindow simpleWindow){
+		this.children.add(simpleWindow);
+	}
 
 	public void addListener(RATmouseListener toAdd) {
-		listeners.add(toAdd);
+		this.listener = toAdd;
 	}
-
 
 	public void mouseClicked(Dimension click, RATmouseEvent event){
-		System.out.println("CLICKED");
-
-		for (RATmouseListener hl : listeners)
-			hl.mouseClicked(click, event);
+		for (SimpleWindow child : children){
+			if (child.contains(click) && child.listener != null){
+				child.listener.mouseClicked(click,event);
+			}
+		}
 	}
 
+	public void mousePressed(Dimension click, RATmouseEvent event){
+		for (SimpleWindow child : children){
+			if (child.contains(click) && child.listener != null){
+				child.listener.mouseClicked(click,event);
+			}
+		}
+	}
+
+	public void mouseReleased(Dimension click, RATmouseEvent event){
+		for (SimpleWindow child : children){
+			if (child.contains(click) && child.listener != null){
+				child.listener.mouseClicked(click,event);
+			}
+		}
+	}
+
+	public void mouseMoved(Dimension click, RATmouseEvent event){
+		for (SimpleWindow child : children){
+			if (child.contains(click) && child.listener != null){
+				child.listener.mouseClicked(click,event);
+			}
+		}
+	}
+
+	public void mouseDragged(Dimension click, RATmouseEvent event){
+		for (SimpleWindow child : children){
+			if (child.contains(click) && child.listener != null){
+				child.listener.mouseClicked(click,event);
+			}
+		}
+	}
+
+
+	public void add(RATbutton button) {
+		positionChild(button);
+
+		children.add(button);
+	}
+
+	private void positionChild(SimpleWindow button) {
+		button.start.setDoubleX((button.start.getDoubleX()*this.size.getDoubleX())+this.start.getDoubleX());
+		button.start.setDoubleY((button.start.getDoubleY()*this.size.getDoubleY())+this.start.getDoubleY());
+		button.start.convertToInt();
+
+		button.end.setDoubleX((button.end.getDoubleX()*this.size.getDoubleX())+this.start.getDoubleX());
+		button.end.setDoubleY((button.end.getDoubleY()*this.size.getDoubleY())+this.start.getDoubleY());
+		button.end.convertToInt();
+		
+		button.setSize();
+	}
+
+	public void setSize() {
+		this.size.setDoubleX(this.end.getDoubleX()-this.start.getDoubleX());
+		this.size.setDoubleY(this.end.getDoubleY()-this.start.getDoubleY());
+		this.size.convertToInt();
+	}
+
+	public void setInitialPosition() {
+		this.initial = new Dimension(this.start.getDoubleX(), this.start.getDoubleY());
+		this.initial.convertToInt();
+		for (SimpleWindow child : children) {
+			child.initial = new Dimension(child.start.getDoubleX(), child.start.getDoubleY());
+			child.initial.convertToInt();
+		}
+	}
+
+	public void moveBox(double v, double v1) {
+		this.move(this.initial.getDoubleX()+v,this.initial.getDoubleY()+v1);
+
+		for (SimpleWindow child: children){
+			child.move(v+child.initial.getDoubleX(), v1+child.initial.getDoubleY());
+		}
+	}
+
+	public void add(RATlabel message) {
+		positionChild(message);
+		children.add(message);
+	}
+
+
+//	public void resizeBox(int i, double titlebarSize, int i1, int i2) {
+//		this.resize(i,titlebarSize,i1,i2 );
+//		for (SimpleWindow child : children) {
+//			child.start.setDoubleX((child.start.getDoubleX()*this.size.getDoubleX())+this.start.getDoubleX());
+//			child.start.setDoubleY((child.start.getDoubleY()*this.size.getDoubleY())+this.start.getDoubleY());
+//			child.start.convertToInt();
+//		}
+//	}
 }
