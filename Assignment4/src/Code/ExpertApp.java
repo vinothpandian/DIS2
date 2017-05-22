@@ -9,8 +9,19 @@ public class ExpertApp {
 	public static String numbers;
 	public static String operators;
 
+	private static String display;
+	private static String input;
+	private static Boolean reset;
+	private static Boolean afterEquals;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		display = "";
+		input = "";
+		reset = false;
+		afterEquals = false;
+
 		WindowSystem windowSystem = WindowSystem.getInstance();
 
 		SimpleWindow ratulator = windowSystem.createSimpleWindow(0.1, 0.1, 0.4,
@@ -41,127 +52,215 @@ public class ExpertApp {
 		btn7.addListener(new RATmouseAdaptor(btn7) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "7";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "7";
+					display = "7";
+				} else {
+					input += "7";
+					display += "7";
+				}
+				view.title = display;
 			}
 		});
 		btn4.addListener(new RATmouseAdaptor(btn4) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "4";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "4";
+					display = "4";
+				} else {
+					input += "4";
+					display += "4";
+				}
+				view.title = display;
 			}
 		});
 		btn1.addListener(new RATmouseAdaptor(btn1) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "1";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "1";
+					display = "1";
+				} else {
+					input += "1";
+					display += "1";
+				}
+				view.title = display;
 			}
 		});
 		btn0.addListener(new RATmouseAdaptor(btn0) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "0";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "0";
+					display = "0";
+				} else {
+					input += "0";
+					display += "0";
+				}
+				view.title = display;
 			}
 		});
 
 		btn8.addListener(new RATmouseAdaptor(btn8) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "8";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "8";
+					display = "8";
+				} else {
+					input += "8";
+					display += "8";
+				}
+				view.title = display;
 			}
 		});
 		btn5.addListener(new RATmouseAdaptor(btn5) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "5";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "5";
+					display = "5";
+				} else {
+					input += "5";
+					display += "5";
+				}
+				view.title = display;
 			}
 		});
 		btn2.addListener(new RATmouseAdaptor(btn2) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "2";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "2";
+					display = "2";
+				} else {
+					input += "2";
+					display += "2";
+				}
+				view.title = display;
 			}
 		});
 		btnDecimal.addListener(new RATmouseAdaptor(btnDecimal) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += ".";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = ".";
+					display = ".";
+				} else {
+					input += ".";
+					display += ".";
+				}
+				view.title = display;
 			}
 		});
 
 		btn9.addListener(new RATmouseAdaptor(btn9) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "9";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "9";
+					display = "9";
+				} else {
+					input += "9";
+					display += "9";
+				}
+				view.title = display;
 			}
 		});
 		btn6.addListener(new RATmouseAdaptor(btn6) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "6";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "6";
+					display = "6";
+				} else {
+					input += "6";
+					display += "6";
+				}
+				view.title = display;
 			}
 		});
 		btn3.addListener(new RATmouseAdaptor(btn3) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += "3";
-				view.title = numbers;
+				if (reset || afterEquals) {
+					reset = false;
+					afterEquals = false;
+					
+					input = "3";
+					display = "3";
+				} else {
+					input += "3";
+					display += "3";
+				}
+				view.title = display;
 			}
 		});
 		btnEquals.addListener(new RATmouseAdaptor(btnEquals) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
+				String[] splittedInput = input.split(";");
 
-				String[] tempNumbers;
-				String[] tempOperators;
-				tempNumbers = numbers.split(";");
-				tempOperators = operators.split(";");
-
-				float result = 0.0f;
-				int counter = 0;
-				for (String operator : tempOperators) {
-					float number1 = 0.0f;
-					float number2 = 0.0f;
+				if (splittedInput.length > 1) {
+					// do calculation
+					float operand1 = 0.0f;
+					float operand2 = 0.0f;
 
 					try {
-						if (counter == 0) {
-							number1 = Float.parseFloat(tempNumbers[counter]);
-						} else {
-							number1 = result;
+						operand1 = Float.parseFloat(splittedInput[0]);
+						operand2 = Float.parseFloat(splittedInput[2]);
+
+						input = "";
+						display = "";
+
+						if (splittedInput[1].equalsIgnoreCase("/")) {
+							input = Float.toString(operand1 / operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("*")) {
+							input = Float.toString(operand1 * operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("-")) {
+							input = Float.toString(operand1 - operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("+")) {
+							input = Float.toString(operand1 + operand2);
 						}
-						number2 = Float.parseFloat(tempNumbers[counter + 1]);
+						display = input;
+						afterEquals = true;
 					} catch (Exception e) {
-						view.title = "Don't mess arround with me!!";
-						counter = 100000;
-						break;
+						view.title = "Syntax error!!";
+						reset = true;
 					}
-
-					if (operator.equalsIgnoreCase("/")) {
-						result = number1 / number2;
-					} else if (operator.equalsIgnoreCase("*")) {
-						result = number1 * number2;
-					} else if (operator.equalsIgnoreCase("-")) {
-						result = number1 - number2;
-					} else if (operator.equalsIgnoreCase("+")) {
-						result = number1 + number2;
-					}
-					counter += 1;
-				}
-
-				operators = "";
-				numbers = "";
-
-				if (counter != 100000) {
-					view.title = Float.toString(result);
+				} else {
+					view.title = display;
 				}
 			}
 		});
@@ -169,33 +268,158 @@ public class ExpertApp {
 		btnDivide.addListener(new RATmouseAdaptor(btnDivide) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += ";";
-				view.title = numbers;
-				operators += "/;";
+				String[] splittedInput = input.split(";");
+
+				if (splittedInput.length > 1) {
+					// do calculation
+					float operand1 = 0.0f;
+					float operand2 = 0.0f;
+
+					try {
+						operand1 = Float.parseFloat(splittedInput[0]);
+						operand2 = Float.parseFloat(splittedInput[2]);
+
+						input = "";
+						display = "";
+
+						if (splittedInput[1].equalsIgnoreCase("/")) {
+							input = Float.toString(operand1 / operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("*")) {
+							input = Float.toString(operand1 * operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("-")) {
+							input = Float.toString(operand1 - operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("+")) {
+							input = Float.toString(operand1 + operand2);
+						}
+						display = input;
+					} catch (Exception e) {
+						view.title = "Syntax error!!";
+						reset = true;
+					}
+				} else {
+					input += ";/;";
+					display += "/";
+					view.title = display;
+				}
+				afterEquals = false;				
 			}
 		});
 		btnMultiply.addListener(new RATmouseAdaptor(btnMultiply) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += ";";
-				view.title = numbers;
-				operators += "*;";
+
+				String[] splittedInput = input.split(";");
+
+				if (splittedInput.length > 1) {
+					// do calculation
+					float operand1 = 0.0f;
+					float operand2 = 0.0f;
+
+					try {
+						operand1 = Float.parseFloat(splittedInput[0]);
+						operand2 = Float.parseFloat(splittedInput[2]);
+
+						input = "";
+						display = "";
+
+						if (splittedInput[1].equalsIgnoreCase("/")) {
+							input = Float.toString(operand1 / operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("*")) {
+							input = Float.toString(operand1 * operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("-")) {
+							input = Float.toString(operand1 - operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("+")) {
+							input = Float.toString(operand1 + operand2);
+						}
+						display = input;
+					} catch (Exception e) {
+						view.title = "Syntax error!!";
+						reset = true;
+					}
+				} else {
+					input += ";*;";
+					display += "*";
+					view.title = display;
+				}
+				afterEquals = false;
 			}
 		});
 		btnMinus.addListener(new RATmouseAdaptor(btnMinus) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += ";";
-				view.title = numbers;
-				operators += "-;";
+				String[] splittedInput = input.split(";");
+
+				if (splittedInput.length > 1) {
+					// do calculation
+					float operand1 = 0.0f;
+					float operand2 = 0.0f;
+
+					try {
+						operand1 = Float.parseFloat(splittedInput[0]);
+						operand2 = Float.parseFloat(splittedInput[2]);
+
+						input = "";
+						display = "";
+
+						if (splittedInput[1].equalsIgnoreCase("/")) {
+							input = Float.toString(operand1 / operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("*")) {
+							input = Float.toString(operand1 * operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("-")) {
+							input = Float.toString(operand1 - operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("+")) {
+							input = Float.toString(operand1 + operand2);
+						}
+						display = input;
+					} catch (Exception e) {
+						view.title = "Syntax error!!";
+						reset = true;
+					}
+				} else {
+					input += ";-;";
+					display += "-";
+					view.title = display;
+				}
+				afterEquals = false;
 			}
 		});
 		btnPlus.addListener(new RATmouseAdaptor(btnPlus) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				numbers += ";";
-				view.title = numbers;
-				operators += "+;";
+				String[] splittedInput = input.split(";");
+
+				if (splittedInput.length > 1) {
+					// do calculation
+					float operand1 = 0.0f;
+					float operand2 = 0.0f;
+
+					try {
+						operand1 = Float.parseFloat(splittedInput[0]);
+						operand2 = Float.parseFloat(splittedInput[2]);
+
+						input = "";
+						display = "";
+
+						if (splittedInput[1].equalsIgnoreCase("/")) {
+							input = Float.toString(operand1 / operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("*")) {
+							input = Float.toString(operand1 * operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("-")) {
+							input = Float.toString(operand1 - operand2);
+						} else if (splittedInput[1].equalsIgnoreCase("+")) {
+							input = Float.toString(operand1 + operand2);
+						}
+						display = input;
+					} catch (Exception e) {
+						view.title = "Syntax error!!";
+						reset = true;
+					}
+				} else {
+					input += ";+;";
+					display += "+";
+					view.title = display;
+				}
+				afterEquals = false;
 			}
 		});
 
@@ -255,9 +479,5 @@ public class ExpertApp {
 		ratulator.add(btnMultiply);
 		ratulator.add(btnMinus);
 		ratulator.add(btnPlus);
-
-		numbers = "";
-		view.title = "";
-		operators = "";
 	}
 }
