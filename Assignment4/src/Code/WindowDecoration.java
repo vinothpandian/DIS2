@@ -30,14 +30,17 @@ public class WindowDecoration {
 
         this.titlebarSize = 0.05;
         this.titleBarColor = Color.darkGray;
+        //  Calls the function to create a titlebar
         createTitlebar(doubleX, doubleY, doubleX1, doubleY1, title);
+        //  Calls the function to create a close button
         createCloseButton(doubleX, doubleY, doubleX1, doubleY1, title);
-        //createMaxButton(doubleX, doubleY, doubleX1, doubleY1, title);
+        //createMaxButton(doubleX, doubleY, doubleX1, doubleY1, title); /*NOT IMPLEMENTED YET*/
 
         borderColor = Color.gray;
 
     }
 
+//      //  Creates a maximise button /*NOT IMPLEMENTED YET*/
 //    private void createMaxButton(double doubleX, double doubleY, double doubleX1, double doubleY1, String title) {
 //        maxButton = windowSystem.createSimpleWindow(closeButton.start.getDoubleX()-0.03, closeButton.start.getDoubleY()
 //                , closeButton.start.getDoubleX()-0.01,
@@ -78,67 +81,13 @@ public class WindowDecoration {
                 titlebar.end.getDoubleY()-0.01,
                 false, "Close button");
         closeButton.color = Color.red;
-        closeButton.addListener(new RATmouseListener() {
-            @Override
-            public void mouseClicked(Dimension click, RATmouseEvent event) {
-
-            }
-
-            @Override
-            public void mousePressed(Dimension click, RATmouseEvent event) {
-                System.out.println("CLOSE BUTTON PRESSED AT : "+click.getIntX());
-            }
-
-            @Override
-            public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-            }
-
-            @Override
-            public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-            }
-
-            @Override
-            public void mouseDragged(Dimension click, RATmouseEvent event) {
-
-            }
-        });
     }
 
     private void createTitlebar(double doubleX, double doubleY, double doubleX1, double doubleY1, String title) {
 
         this.titlebar = windowSystem.createSimpleWindow(doubleX, doubleY-titlebarSize, doubleX1, doubleY, false,
                 "Titlebar");
-        this.titlebar.color = titleBarColor;;
-
-        this.titlebar.addListener(new RATmouseListener() {
-            @Override
-            public void mouseClicked(Dimension click, RATmouseEvent event) {
-
-
-            }
-
-            @Override
-            public void mousePressed(Dimension click, RATmouseEvent event) {
-
-            }
-
-            @Override
-            public void mouseReleased(Dimension click, RATmouseEvent event) {
-
-            }
-
-            @Override
-            public void mouseMoved(Dimension click, RATmouseEvent event) {
-
-            }
-
-            @Override
-            public void mouseDragged(Dimension click, RATmouseEvent event) {
-
-            }
-        });
+        this.titlebar.color = titleBarColor;
 
     }
 
@@ -152,18 +101,21 @@ public class WindowDecoration {
                     this.border.end.getIntY());
         }
 
+        //  Draws the titlebar
         windowSystem.setColor(this.titlebar.color);
         windowSystem.fillRect(this.titlebar.start.getIntX(),
                 this.titlebar.start.getIntY(),
                 this.titlebar.end.getIntX(),
                 this.titlebar.end.getIntY());
 
+        //  Draws the close button
         windowSystem.setColor(this.closeButton.color);
         windowSystem.fillRect(this.closeButton.start.getIntX(),
                 this.closeButton.start.getIntY(),
                 this.closeButton.end.getIntX(),
                 this.closeButton.end.getIntY());
 
+//          //  Draws the maximise button /* NOT IMPLEMENTED YET*/
 //        windowSystem.setColor(this.maxButton.color);
 //        windowSystem.fillRect(this.maxButton.start.getIntX(),
 //                this.maxButton.start.getIntY(),
@@ -171,6 +123,8 @@ public class WindowDecoration {
 //                this.maxButton.end.getIntY());
     }
 
+
+    //  Repositions the window decoration as per the given position
     public void reposition(double i, double i1) {
         this.titlebar.move(i,i1-titlebarSize);
         this.closeButton.move(titlebar.end.getDoubleX()-0.03,titlebar.end.getDoubleY()-0.04);
@@ -185,15 +139,18 @@ public class WindowDecoration {
         this.titlebar.color = titleBarColor;
     }
 
+    //  Adds border to the simple window
     public void addBorder(Dimension start, Dimension end) {
         border = new SimpleWindow(start.getDoubleX()-0.002, start.getDoubleY()-titlebarSize-0.002,
                 end.getDoubleX()+0.002, end.getDoubleY()+0.002);
     }
 
+    //  Removes the border of the simple window
     public void removeBorder() {
         this.border = null;
     }
 
+    /* //   Maximises the simple window's window decoration // NOT IMLEMENTED YET
     public void maximise() {
         this.titlebar.resize(0,0,1,titlebarSize);
         this.closeButton.resize(titlebar.end.getDoubleX()-0.03, titlebar.end.getDoubleY()
@@ -202,5 +159,5 @@ public class WindowDecoration {
 //        this.maxButton.resize(closeButton.start.getDoubleX()-0.03, closeButton.start.getDoubleY()
 //                , closeButton.start.getDoubleX()-0.01,
 //                closeButton.end.getDoubleY());
-    }
+    }*/
 }

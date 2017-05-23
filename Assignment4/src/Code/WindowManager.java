@@ -92,6 +92,7 @@ public class WindowManager {
         initialMousePosition = click;
     }
 
+    //  Decorates the active window
     protected void decorateActiveWindow(DecoratedWindow activeWindow) {
         activeWindow.windowDecoration.titlebar.color = Color.gray;
         activeWindow.windowDecoration.addBorder(activeWindow.simpleWindow.start, activeWindow.simpleWindow.end);
@@ -122,17 +123,20 @@ public class WindowManager {
 
     }
 
+    //  Removes the window decoration of active window
     protected void removeActiveWindowDecoration(DecoratedWindow activeWindow) {
         activeWindow.windowDecoration.removeBorder();
         activeWindow.windowDecoration.reset();
     }
 
+    //  Creates a decorated window
     public void createDecoratedWindow(SimpleWindow simpleWindow) {
         windowSystem.decoratedWindows.add(new DecoratedWindow(simpleWindow, new WindowDecoration(
                 simpleWindow.start.getDoubleX(), simpleWindow.start.getDoubleY(),
                 simpleWindow.end.getDoubleX(), simpleWindow.end.getDoubleY(), simpleWindow.title)));
     }
 
+//      //  Handles the window maximise button /*NOT IMPLEMENTED YET*/
 //    public void handleMaximise(DecoratedWindow decoratedWindow){
 //        bringToFront(decoratedWindow);
 //        SimpleWindow sw = decoratedWindow.simpleWindow;

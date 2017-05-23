@@ -1,12 +1,16 @@
 package Code;
 
-/**
- * Created by vinot on 5/21/2017.
+/*
+ * Really Awesome Mouse adaptor for Really Awesome Mouse listeners
+ *
+ * Implements the Mouse listener
+ *
+ * Stores the button that uses the mouse listener.
+ *
  */
 public class RATmouseAdaptor implements RATmouseListener {
 
     private RATbutton button;
-    private RATlabel label;
 
     public RATbutton getButton() {
         return button;
@@ -16,20 +20,8 @@ public class RATmouseAdaptor implements RATmouseListener {
         this.button = button;
     }
 
-    public RATlabel getLabel() {
-        return label;
-    }
-
-    public void setLabel(RATlabel label) {
-        this.label = label;
-    }
-
     public RATmouseAdaptor(RATbutton raTbutton) {
         this.button = raTbutton;
-    }
-
-    public RATmouseAdaptor(RATlabel raTlabel){
-        this.label = raTlabel;
     }
 
     @Override

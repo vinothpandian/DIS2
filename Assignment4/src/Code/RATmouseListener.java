@@ -1,7 +1,9 @@
 package Code;
 
-/**
- * Created by vinot on 5/18/2017.
+/*
+ * Really Awesome Mouse Listener interface
+ * Passes the mouse position and the mouse event
+ *
  */
 public interface RATmouseListener {
 

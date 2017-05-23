@@ -63,6 +63,7 @@ public class WindowSystem extends GraphicsEventSystem {
         } else if (windowManager == null){
             decoratedWindows.add(new DecoratedWindow(simpleWindow, null));
         }
+        this.requestRepaint();
         return simpleWindow;
     }
 
@@ -126,6 +127,14 @@ public class WindowSystem extends GraphicsEventSystem {
         if (windowManager!=null){
             windowManager.handleMouseRelease(click);
         }
+
+        for (DecoratedWindow decoratedWindow : decoratedWindows) {
+            if (decoratedWindow.simpleWindow.contains(click)){
+                decoratedWindow.simpleWindow.mouseReleased(click, RATmouseEvent.RELEASED);
+                windowSystem.requestRepaint();
+            }
+        }
+
     }
 
 
@@ -141,6 +150,13 @@ public class WindowSystem extends GraphicsEventSystem {
             windowManager.handleMouseDrag(click);
         }
 
+        for (DecoratedWindow decoratedWindow : decoratedWindows) {
+            if (decoratedWindow.simpleWindow.contains(click)){
+                decoratedWindow.simpleWindow.mouseReleased(click, RATmouseEvent.DRAGGED);
+                windowSystem.requestRepaint();
+            }
+        }
+
     }
 
     /*  Override mouse moved handler from Graphic Event Library and find which application is being affected by the
@@ -150,6 +166,13 @@ public class WindowSystem extends GraphicsEventSystem {
         super.handleMouseMoved(i, i1);
         Dimension click = new Dimension(i, i1);
         click.convertToDouble();
+
+        for (DecoratedWindow decoratedWindow : decoratedWindows) {
+            if (decoratedWindow.simpleWindow.contains(click)){
+                decoratedWindow.simpleWindow.mouseReleased(click, RATmouseEvent.MOVED);
+                windowSystem.requestRepaint();
+            }
+        }
 
     }
 
@@ -185,6 +208,8 @@ public class WindowSystem extends GraphicsEventSystem {
                     windowManager.removeActiveWindowDecoration(decoratedWindows.getLast());
                     windowManager.bringToFront(decoratedWindow);
                 }
+                decoratedWindow.simpleWindow.mousePressed(click, RATmouseEvent.PRESSED);
+                windowSystem.requestRepaint();
                 break;
             }
         }
@@ -214,14 +239,13 @@ public class WindowSystem extends GraphicsEventSystem {
                     windowSystem.setColor(((RATbutton) child).buttonColor);
                     windowSystem.fillRect(child.start.getIntX(), child.start.getIntY(), child.end.getIntX(),
                             child.end.getIntY());
-                    windowSystem.setColor(((RATbutton) child).color);
-                    windowSystem.drawString(((RATbutton) child).text, ((child.start.getIntX()+child.end.getIntX())
-                                    /2-((RATbutton) child).textPosition),
-                            ((child.start.getIntY()+child.end.getIntY())/2)+4);
+                    windowSystem.setColor(((RATlabel) child).labelColor);
+                    windowSystem.drawString(((RATlabel) child).text, ((child.start.getIntX()+child.end.getIntX())
+                                    /2)-((RATbutton) child).textPosition,
+                            ((child.start.getIntY()+child.end.getIntY())/2)+((RATbutton) child).textPosition/3);
                 } else if (child instanceof RATlabel){
-                    windowSystem.setColor(((RATlabel)child).color);
+                    windowSystem.setColor(((RATlabel)child).labelColor);
                     windowSystem.drawString(((RATlabel)child).text, child.start.getIntX(), child.start.getIntY());
-
                 }
 
             }
@@ -229,6 +253,7 @@ public class WindowSystem extends GraphicsEventSystem {
         }
     }
 
+    //  Allows the application developer to close the simple window
     public void closeWindow(SimpleWindow helloWorld) {
 
         DecoratedWindow toRemove = null;

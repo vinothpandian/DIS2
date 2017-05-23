@@ -1,7 +1,8 @@
 package Code;
 
-/**
- * Created by vinot on 5/18/2017.
+/*
+ * Really Awesome Mouse events
+ *
  */
 public enum RATmouseEvent {
     CLICKED,

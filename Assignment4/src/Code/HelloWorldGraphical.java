@@ -1,17 +1,22 @@
 package Code;
 
-import java.awt.*;
 
-/**
- * Created by vinot on 5/21/2017.
+/*
+ * Really Awesome Hello World program!
+ * Now using Really Awesome Toolkit.
+ *
  */
+
+
+import java.awt.Color;
+
 public class HelloWorldGraphical {
 
 	public static void main(String args[]) {
 		WindowSystem windowSystem = WindowSystem.getInstance();
 
 		SimpleWindow helloWorld = windowSystem.createSimpleWindow(0.1, 0.1,
-				0.4, 0.6, "Hello World");
+				0.4, 0.6, "Window A");
 
 		RATbutton english = new RATbutton(0.26, 0.1, 0.73, 0.18, "English");
 		RATbutton deutsch = new RATbutton(0.26, 0.25, 0.73, 0.32, "Deutsch");
@@ -20,8 +25,8 @@ public class HelloWorldGraphical {
 		
 		RATlabel message = new RATlabel(0.43, 0.63, 0.8, 0.8, "Message");
 
-		english.buttonColor = Color.WHITE;
-		english.color = Color.black;
+		english.buttonColor = Color.GRAY;
+		english.labelColor = Color.white;
 		english.addListener(new RATmouseAdaptor(english) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
@@ -30,8 +35,8 @@ public class HelloWorldGraphical {
 		});
 		helloWorld.add(english);
 
-		deutsch.buttonColor = Color.WHITE;
-		deutsch.color = Color.black;
+		deutsch.buttonColor = Color.GRAY;
+		deutsch.labelColor = Color.white;
 		deutsch.addListener(new RATmouseAdaptor(deutsch) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
@@ -40,18 +45,18 @@ public class HelloWorldGraphical {
 		});
 		helloWorld.add(deutsch);
 
-		francais.buttonColor = Color.white;
-		francais.color = Color.black;
+		francais.buttonColor = Color.GRAY;
+		francais.labelColor = Color.white;
 		francais.addListener(new RATmouseAdaptor(francais) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
-				message.text = "Bonjour or whatever it is!";
+				message.text = "Bonne journée!";
 			}
 		});
 		helloWorld.add(francais);
-				
-		end.buttonColor = Color.white;
-		end.color = Color.black;
+
+		end.buttonColor = Color.GRAY;
+		end.labelColor = Color.white;
 		end.addListener(new RATmouseAdaptor(end) {
 			@Override
 			public void mouseClicked(Dimension click, RATmouseEvent event) {
@@ -60,7 +65,7 @@ public class HelloWorldGraphical {
 		});
 		helloWorld.add(end);
 
-		message.color = Color.BLUE;
+		message.labelColor = Color.BLUE;
 		helloWorld.add(message);
 
 	}
