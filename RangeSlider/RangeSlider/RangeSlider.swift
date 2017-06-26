@@ -12,143 +12,221 @@ import Cocoa
 
 class RangeSlider: NSView {
     
+    // string for testing MUST be REMOVED before submission
     var alert: String = ""
+    var alert1: String = ""
     
-    private var lastDragLocation : NSPoint?
-    private var clicked : Bool = false
-    
-    @IBInspectable var lineColor: NSColor = NSColor.white
-    @IBInspectable var rangeColor: NSColor = NSColor.red
-    @IBInspectable var lineWidth: CGFloat = 1.0
-    
-    @IBInspectable var textColor: NSColor = NSColor.black
-    @IBInspectable var minSliderValue: Int = 0 {
+    //  Horizontal bar color, width, minimum and maximum bar values
+    @IBInspectable var barlineColor: NSColor = NSColor.black
+    @IBInspectable var barlineWidth: CGFloat = 1.0
+
+    @IBInspectable var minBarValue: Int = 0 {
         didSet{
-            fullRange = self.calcRange(x: minSliderValue, y: maxSliderValue)
+            fullRange = self.calcRange(x: minBarValue, y: maxBarValue)
+            recalculateSliderPosition()
+            needsDisplay = true
         }
     }
-    @IBInspectable var maxSliderValue: Int = 100{
+    @IBInspectable var maxBarValue: Int = 100{
         didSet{
-            fullRange = self.calcRange(x: minSliderValue, y: maxSliderValue)
+            fullRange = self.calcRange(x: minBarValue, y: maxBarValue)
+            recalculateSliderPosition()
+            needsDisplay = true
         }
     }
     
-    var fullRange: Int =  0
-    var pixelRange: CGFloat = 0
-    
+    // default values for text size and color
     @IBInspectable var textSize: CGFloat = 14.0
-    @IBInspectable var sliderButtonColor: NSColor = NSColor.black
+    @IBInspectable var textColor: NSColor = NSColor.black
     
-    @IBInspectable var sliderMinPosition: Int = 50 {
+    // color of the slider buttons and the range bar
+    @IBInspectable var sliderButtonColor: NSColor = NSColor.black
+    @IBInspectable var rangeColor: NSColor = NSColor.red
+    
+    // stores the left slider position and also checks whether it satisfies the limits
+    @IBInspectable var leftSliderPos: Int = 50 {
         didSet{
-            
-            
-            if sliderMinPosition >= minSliderValue && sliderMinPosition < sliderMaxPosition {
-                selectedRange = calcRange(x: sliderMinPosition, y: sliderMaxPosition)
+            if leftSliderPos >= minBarValue && leftSliderPos < rightSliderPos {
+                recalculateSliderPosition()
                 needsDisplay = true
-            } else {
-                alert = "Incorrect range value"
-                selectedRange = 0
             }
         }
     }
-    @IBInspectable var sliderMaxPosition: Int = 70 {
-        
+    
+    // stores the right slider position and also checks whether it satisfies the limits
+    @IBInspectable var rightSliderPos: Int = 70 {
         didSet {
-            
-            if sliderMaxPosition <= maxSliderValue && sliderMaxPosition > sliderMinPosition {
-                selectedRange = calcRange(x: sliderMinPosition, y: sliderMaxPosition)
+            if rightSliderPos <= maxBarValue && rightSliderPos > leftSliderPos {
+                recalculateSliderPosition()
                 needsDisplay = true
-            } else {
-                alert = "Incorrect range value"
-                selectedRange = 0
             }
         }
     }
-    var selectedRange: Int = 0
+    
+    // range of left and right slider position
+    var selectedRange: Int?
+    
+    // to store the range of minimum and maximum bar value. It is calculated in pixels too for display
+    var fullRange: Int?
+    var pixelRange: CGFloat?
+    
+    // start and end points of Horizontal bar line
+    var startPoint:NSPoint?
+    var endPoint: NSPoint?
+    
+    var leftX: CGFloat?
+    var rightX: CGFloat?
+    
+    var leftSliderRect: NSRect?
+    var rightSliderRect: NSRect?
+    var sliderRangeRect: NSRect?
+    var sliderBounds: NSRect?
+    
+    var lastClickPos: NSPoint?
+    
+    var leftSliderClicked: Bool = false
+    var rightSliderClicked: Bool = false
+    var rangelSliderClicked: Bool = false
+    
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        startPoint = NSMakePoint(bounds.minX+textSize*2, bounds.midY)
+        endPoint = NSMakePoint(bounds.maxX-textSize*3, bounds.midY)
+        
+        // calculate the range and position of left and right slider
+        fullRange = calcRange(x: minBarValue, y: maxBarValue)
+        pixelRange = endPoint!.x - startPoint!.x
+        
+        recalculateSliderPosition()
+    }
 
     
+    func recalculateSliderPosition(){
+        selectedRange = calcRange(x: leftSliderPos, y: rightSliderPos)
+        leftX = calculatePosition(x: leftSliderPos)
+        rightX = calculatePosition(x: rightSliderPos)
+        leftSliderRect = NSMakeRect(leftX!, startPoint!.y - 15.0, 5.0 , 30.0)
+        rightSliderRect = NSMakeRect(rightX!, endPoint!.y - 15.0, 5.0 , 30.0)
+        sliderRangeRect = NSMakeRect(leftSliderRect!.minX, leftSliderRect!.minY, rightSliderRect!.maxX-leftSliderRect!.minX, 30.0)
+        sliderBounds = NSMakeRect(leftSliderRect!.minX, leftSliderRect!.minY, rightSliderRect!.maxX-leftSliderRect!.minX, 30.0)
+    }
+    
+    // function to calculate the range between two values x and y
     func calcRange(x: Int, y:Int) -> Int {
         return y-x
     }
     
+    // converts the absolute position to value to its relative value in the slider
     func convertToRange(x:Int) -> CGFloat {
         
-        return CGFloat(x)/CGFloat(fullRange)
+        return CGFloat(x-minBarValue)/CGFloat(fullRange!)
     }
     
-    func calculatePosition(){
+    func convertToPos(x:CGFloat) -> Int {
+        return Int((x-startPoint!.x)/pixelRange!*CGFloat(fullRange!))
     }
     
+    func calculatePosition(x: Int) -> CGFloat {
+        return convertToRange(x: x)*pixelRange! + startPoint!.x
+    }
+    
+    
+    override func mouseDown(with event: NSEvent) {
+        
+        lastClickPos = superview!.convert(event.locationInWindow, from: nil)
+        
+        if leftSliderRect!.contains(lastClickPos!) {
+            leftSliderClicked = true
+        } else if rightSliderRect!.contains(lastClickPos!) {
+            rightSliderClicked = true
+        } else if sliderRangeRect!.contains(lastClickPos!) {
+            rangelSliderClicked = true
+        }
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        
+//        let clickPos: NSPoint = superview!.convert(event.locationInWindow, from: nil)
+//        
+//        if leftSliderClicked {
+//            leftSliderPos = convertToPos(x: (clickPos.x-lastClickPos!.x)+leftSliderRect!.minX)
+//        } else if rightSliderClicked {
+//            rightSliderPos = convertToPos(x: (clickPos.x-lastClickPos!.x)+rightSliderRect!.minX)
+//        }
+        
+        leftSliderClicked = false
+        rightSliderClicked = false
+        rangelSliderClicked = false
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        let clickPos: NSPoint = superview!.convert(event.locationInWindow, from: nil)
+        let deltaX = lastClickPos!.x - clickPos.x
+        
+        if leftSliderClicked {
+            alert = String(describing: lastClickPos!.x)
+            alert1 = String(describing: clickPos.x)
+            leftSliderRect!.offsetBy(dx: deltaX, dy: 0)
+        } else if rightSliderClicked {
+            rightSliderPos = convertToPos(x: (clickPos.x-lastClickPos!.x)+rightSliderRect!.minX)
+        }
+        
+        needsDisplay = true
+        
+    }
+    
+    // draw the window
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
         // Drawing code here.
-        lineColor.setStroke()
+        barlineColor.setStroke()
         
         // Draw line using NSBezierpath
         let barPath = NSBezierPath()
-        barPath.lineWidth = lineWidth
-        let startPoint:NSPoint = NSMakePoint(bounds.minX+textSize*2, bounds.midY)
-        let endPoint: NSPoint = NSMakePoint(bounds.maxX-textSize*3, bounds.midY)
-        barPath.move(to: startPoint)
-        barPath.line(to: endPoint)
+        barPath.lineWidth = barlineWidth
+        barPath.move(to: startPoint!)
+        barPath.line(to: endPoint!)
         barPath.stroke()
         
         //Draw text of Maximum and Minimum Value of slider
        
-        (String(minSliderValue) as NSString).draw(
+        (String(minBarValue) as NSString).draw(
             at: NSMakePoint(bounds.minX+textSize,bounds.midY-textSize/2.0))
         
-        (String(maxSliderValue) as NSString).draw(
+        (String(maxBarValue) as NSString).draw(
             at: NSMakePoint(bounds.maxX-textSize*2.5,bounds.midY-textSize/2.0))
         
-        fullRange = calcRange(x: minSliderValue, y: maxSliderValue)
-//        let sliderMin: CGFloat = startPoint.x + convertToRange(x: sliderMinPosition)
-//        let sliderMax: CGFloat = startPoint.x + convertToRange(x: sliderMaxPosition)
-        
-        pixelRange = endPoint.x - startPoint.x
-        
-        let start: CGFloat = convertToRange(x: sliderMinPosition)*pixelRange + startPoint.x
-        let end: CGFloat = convertToRange(x: sliderMaxPosition)*pixelRange + startPoint.x
-        
-        //
-//        var sliderStartRect: NSRect = NSMakeRect(startPoint.x, startPoint.y - 20, 5.0 , 40)
-//        var sliderEndRect: NSRect = NSMakeRect(endPoint.x, endPoint.y - 20, 5.0 , 40)
-        
-        let sliderStartRect: NSRect = NSMakeRect(start, startPoint.y - 20.0, 5.0 , 40.0)
-        let sliderEndRect: NSRect = NSMakeRect(end, endPoint.y - 20.0, 5.0 , 40.0)
-        let sliderRangeRect: NSRect = NSMakeRect(sliderStartRect.minX, sliderStartRect.minY+7, sliderEndRect.maxX-sliderStartRect.minX, 26.0)
-        
-        
+        // draw left, right and range sliders
         rangeColor.setFill()
-        NSRectFill(sliderRangeRect)
-        
+        NSRectFill(sliderRangeRect!)
         sliderButtonColor.setFill()
-        NSRectFill(sliderStartRect)
-        NSRectFill(sliderEndRect)
+        NSRectFill(leftSliderRect!)
+        NSRectFill(rightSliderRect!)
         
 
+        // draw respective text value near left and right sliders
+        (String(leftSliderPos) as NSString).draw(
+            at: NSMakePoint(leftSliderRect!.minX-textSize/2,leftSliderRect!.maxY+textSize))
         
-        (String(sliderMinPosition) as NSString).draw(
-            at: NSMakePoint(sliderStartRect.minX-textSize/2,sliderStartRect.maxY+textSize))
-        
-        (String(sliderMaxPosition) as NSString).draw(
-            at: NSMakePoint(sliderEndRect.minX-textSize/2,sliderEndRect.minY - textSize*2))
+        (String(rightSliderPos) as NSString).draw(
+            at: NSMakePoint(rightSliderRect!.minX-textSize/2,rightSliderRect!.minY - textSize*2))
         
 
-        
-        ("Selected Range: "+String(selectedRange) as NSString).draw(
+        // draw selected range value string
+        ("Selected Range: " + String(selectedRange!) as NSString).draw(
             at: NSMakePoint(bounds.midX-50,bounds.minY+textSize))
         
-        alert = String(describing: clicked)
+        // test alert
         (alert as NSString).draw(
-            at: NSMakePoint(bounds.midX-50,bounds.minY+100))
+            at: NSMakePoint(bounds.midX-50,bounds.maxY-20))
+        
+        // test alert1
+        (alert1 as NSString).draw(
+            at: NSMakePoint(bounds.midX-50,bounds.maxY-40))
         
     }
-    
-    override func mouseDown(with event: NSEvent) {
-        alert = "Mouse DOwn!"
-        needsDisplay = true
-    }
+
 }
